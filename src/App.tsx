@@ -30,11 +30,11 @@ const App = () => {
     })
   return (
     <Provider store={store}>
-    <BrowserRouter>
+      <BrowserRouter>
         <Index />
         <Toaster />
       </BrowserRouter>
-      </Provider>
+    </Provider>
   )
 }
 
