@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setChangeTheme } from '../redux/slices/themeSlice';
 import { IoMdSunny } from 'react-icons/io';
 import { FaRegMoon } from 'react-icons/fa';
+import { MdOutlineDarkMode } from 'react-icons/md';
 
 const ThemeToggle = () => {
   // const [darkMode, setDarkMode] = useState(() => (localStorage.getItem('theme') == "dark"));
@@ -40,14 +41,13 @@ const ThemeToggle = () => {
     // />
     <Button
     isIconOnly
-    variant='flat'
-    color='primary'
+    variant='light'
     onPress={()=>{
       dispatch(setChangeTheme(!darkMode))
     }}
     >
       {
-        darkMode == true ?<IoMdSunny size={20}/> :<FaRegMoon  size={20}/>
+        darkMode == true ?<IoMdSunny size={15}/> :<MdOutlineDarkMode  size={15}/>
       }
     </Button>
 

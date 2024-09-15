@@ -25,11 +25,11 @@ const CommonConfirmation = ({ isOpen, onOpenChange, title, handleSubmit, nagativ
                   {title}
                 </h3>
                 <div className={`flex justify-center gap-4`}>
-                <Button variant='shadow' color='secondary' onClick={onOpenChange}>
+                <Button variant='shadow' color='primary' onClick={onOpenChange}>
                     {/* No, cancel */}
                     {nagativeTitle}
                   </Button>
-                  <Button variant='shadow' color='primary' onClick={handleSubmit}>
+                  <Button variant='shadow' color='danger' onClick={handleSubmit}>
                     {positiveTitle}
                   </Button>
                 
