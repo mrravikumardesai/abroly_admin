@@ -31,10 +31,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-export const description =
-  "A products dashboard with a sidebar navigation and a main content area. The dashboard has a header with a search input and a user menu. The sidebar has a logo, navigation links, and a card with a call to action. The main content area shows an empty state with a call to action."
-
-
 const AdminDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -47,14 +43,7 @@ const AdminDashboard = () => {
       title: "Home",
       to: "/",
     },
-    {
-      title: "Faqs",
-      to: "/faqs",
-    },
-    {
-      title: "Testimonials",
-      to: "/testimonails",
-    },
+
     {
       title: "Content Writing",
       to: "/content_writing",
@@ -62,6 +51,19 @@ const AdminDashboard = () => {
     {
       title: "Sim Card",
       to: "/sim_card",
+    },
+
+    {
+      title: "Faqs",
+      to: "/faqs",
+    },
+    {
+      title: "Static Content",
+      to: "/static_content",
+    },
+    {
+      title: "Testimonials",
+      to: "/testimonails",
     },
 
   ]
@@ -190,6 +192,7 @@ const AdminDashboard = () => {
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               {SideMenu.map((menuItems: any) => (
                 <Link
+                  key={menuItems?.to}
                   to={menuItems?.to}
                   className={`flex items-center gap-3 px-3 py-2 ${window.location.pathname.substring(1) == menuItems.to.substring(1) && 'bg-gray-200 dark:bg-gray-700'} rounded-xl hover:rounded-lg my-1 transition-all hover:text-primary`}
                 >
@@ -199,7 +202,7 @@ const AdminDashboard = () => {
               ))}
             </nav>
           </div>
-          <div className="mt-auto p-4">
+          {/* <div className="mt-auto p-4"> */}
             {/* <Card x-chunk="dashboard-02-chunk-0">
             <CardHeader className="p-2 pt-0 md:p-4">
               <CardTitle>Upgrade to Pro</CardTitle>
@@ -214,8 +217,8 @@ const AdminDashboard = () => {
               </Button>
             </CardContent>
           </Card> */}
-            <p>Footer Content</p>
-          </div>
+            {/* <p>Footer Content</p> */}
+          {/* </div> */}
         </div>
       </div>
       <div className="flex flex-col">
@@ -235,6 +238,7 @@ const AdminDashboard = () => {
               <nav className="grid gap-2 text-lg font-medium">
               {SideMenu.map((menuItems: any) => (
                 <Link
+                  key={menuItems?.to}
                   to={menuItems?.to}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >

@@ -104,7 +104,7 @@ const Login = () => {
     return (
         <section className="grid grid-cols-2 h-full items-center">
 
-            <div className="hidden lg:block w-full h-[70vh] px-2">
+            <div className="hidden lg:block w-full h-[60vh] px-2">
                 <img src="https://images.pexels.com/photos/2859169/pexels-photo-2859169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="w-full h-full object-cover rounded-3xl" />
             </div>
 
@@ -121,7 +121,7 @@ const Login = () => {
                             }}>
                                 <Input
                                     label="Phone Number"
-                                    startContent={<p className='text-sm font-bold'>+91</p>}
+                                    startContent={<p className='text-sm'>+91</p>}
                                     value={numberAndCountryCode.phone_number}
                                     onChange={(e) => {
                                         setNumberAndCountryCode({
