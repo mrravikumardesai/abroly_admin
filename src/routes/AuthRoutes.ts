@@ -7,6 +7,9 @@ import Login from "../modules/public/Login"
 import Testimonials from "../modules/Testimonials/Testimonials"
 import ContentWritingList from "@/modules/ContentWriting/ContentWritingList"
 import SimCardListing from "@/modules/SimCard/SimCardListing"
+import StaticContent from "@/modules/Static_content/StaticContent"
+import StaticContentEdit from "@/modules/Static_content/StaticContentEdit"
+import StaticContentAdd from "@/modules/Static_content/StaticContentAdd"
 
 export const PublicRoutes = [
     {
@@ -47,6 +50,18 @@ export const AdminRoutes = [
     {
         path: "/sim_card",
         element: SimCardListing
+    },
+    {
+        path: "/static_content",
+        element: StaticContent
+    },
+    {
+        path: "/static/edit/:id",
+        element: StaticContentEdit
+    },
+    {
+        path: "/static/add",
+        element: StaticContentAdd
     },
 
     // 404
