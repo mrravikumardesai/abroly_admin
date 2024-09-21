@@ -137,7 +137,7 @@ const Testimonials = () => {
         topContent={
           <div className='flex sm:flex-row items-center justify-between flex-col flex-wrap gap-2'>
             <h1 className=''>You can manage customer reviews and feedback to showcase positive experiences and build credibility.</h1>
-            <Button color='primary' variant='flat' className='self-end' onPress={onOpenChange}>
+            <Button color='primary' className='self-end' onPress={onOpenChange}>
               Add Testimonials
             </Button>
           </div>

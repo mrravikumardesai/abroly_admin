@@ -1,16 +1,26 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea, getKeyValue, useDisclosure } from '@nextui-org/react'
+import { Button, Chip, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea, getKeyValue, useDisclosure } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
 
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { commonGetAPICalls, commonPostAPICall } from '../../utils/ApiCallUtils'
 import CommonConfirmation from '../../components/CommonConfirmation'
+import { useNavigate } from 'react-router-dom'
 
 const ContentWritingList = () => {
     const [contentWritingData, setContentWritingData] = useState([])
+    const [offset, setOffset] = useState(0)
+    const [total, setTotal] = useState(0)
 
     useEffect(() => {
         initDataApiCall()
+
     }, [])
+    useEffect(() => {
+
+        initContentWritingRequestApiCall()
+    }, [offset])
+
+
 
     const initDataApiCall = async () => {
         const { data, success } = await commonGetAPICalls("/content_writing/list")
@@ -40,8 +50,28 @@ const ContentWritingList = () => {
         }
     }
 
+    const [requestData, setRequestData] = useState([])
+
+    const limit = 10;
+
+    const initContentWritingRequestApiCall = async () => {
+        const { data, success, total } = await commonPostAPICall({
+            offset,
+            limit: limit,
+        }, "/content_writing_response/list_admin")
+        if (success && success == true) {
+            setRequestData(data)
+            setTotal(total)
+        }
+
+    }
+
+    const navigate = useNavigate()
+
+
+
     return (
-        <div className='container mx-auto my-10'>
+        <div className='container mx-auto my-10 space-y-5'>
             <Table
                 aria-label="Example table with client side pagination"
                 topContent={
@@ -103,6 +133,68 @@ const ContentWritingList = () => {
 
                             }
 
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+
+            <Table
+                aria-label="Example table with client side pagination"
+                topContent={
+                    <div className='flex flex-row justify-between items-center'>
+                        <h1>User Form Requests</h1>
+                    </div>
+                }
+                bottomContent={
+                    <section className='container mx-auto w-full'>
+                        <Pagination
+                            isCompact
+                            total={Math.floor(total / limit)}
+                            onChange={(page) => {
+                                setOffset(page * limit)
+                            }}
+                        />
+                    </section>
+                }
+            >
+                <TableHeader>
+                    <TableColumn key="name">Name</TableColumn>
+                    <TableColumn key="number">Phone Number</TableColumn>
+                    <TableColumn key="selected_type">Request For</TableColumn>
+                    <TableColumn key="application_status">Status</TableColumn>
+                    <TableColumn key="createdAt">Submit On</TableColumn>
+                    {/* <TableColumn key="action">Action</TableColumn> */}
+                </TableHeader>
+                <TableBody items={requestData} emptyContent={"No rows to display."}>
+                    {(item: any) => (
+                        <TableRow key={item?.key} onClick={(e) => {
+                            e.stopPropagation()
+                            navigate(`/content_writing_details/${getKeyValue(item, "uuid")}`)
+                        }}
+                            className='cursor-pointer'
+                        >
+                            {(columnKey) => {
+                                if (columnKey == "createdAt") {
+                                    return <TableCell>{new Date(getKeyValue(item, "createdAt")).toString()}</TableCell>
+                                } else if (columnKey == "application_status") {
+                                    return <TableCell>
+                                        <Chip
+                                            color={
+                                                getKeyValue(item, "application_status") == "pending" ? "warning" :
+                                                    getKeyValue(item, "application_status") == "accept" || getKeyValue(item, "application_status") == "pdf_provided" ? "success" : "default"
+                                            }
+                                        >
+                                            {getKeyValue(item, "application_status").replaceAll("_", " ").toUpperCase()}
+                                        </Chip>
+
+                                    </TableCell>
+                                } else {
+                                    return <TableCell>
+                                        {getKeyValue(item, columnKey)}
+
+                                    </TableCell>
+                                }
+                            }}
                         </TableRow>
                     )}
                 </TableBody>
