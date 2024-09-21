@@ -45,7 +45,6 @@ const StaticContent = () => {
           onPress={() => {
             navigate(`/static/add`)
           }}
-          variant='flat'
           color='primary'
         >
           Add Static Page

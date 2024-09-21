@@ -10,6 +10,7 @@ import SimCardListing from "@/modules/SimCard/SimCardListing"
 import StaticContent from "@/modules/Static_content/StaticContent"
 import StaticContentEdit from "@/modules/Static_content/StaticContentEdit"
 import StaticContentAdd from "@/modules/Static_content/StaticContentAdd"
+import ContentWritingDetails from "@/modules/ContentWriting/ContentWritingDetails"
 
 export const PublicRoutes = [
     {
@@ -58,6 +59,10 @@ export const AdminRoutes = [
     {
         path: "/static/edit/:id",
         element: StaticContentEdit
+    },
+    {
+        path: "/content_writing_details/:id",
+        element: ContentWritingDetails
     },
     {
         path: "/static/add",

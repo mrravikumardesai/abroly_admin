@@ -7,28 +7,15 @@ import Footer from '../../components/Footer';
 import CommonConfirmation from '../../components/CommonConfirmation';
 import { handleLogout } from '../../utils/LogoutUtils';
 import {
-  Bell,
-  CircleUser,
+
   Home,
-  LineChart,
+
   Menu,
-  Package,
-  Package2,
-  Search,
-  ShoppingCart,
-  Users,
+
 } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 
-import { Input } from "@/components/ui/input"
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const AdminDashboard = () => {
@@ -194,7 +181,7 @@ const AdminDashboard = () => {
                 <Link
                   key={menuItems?.to}
                   to={menuItems?.to}
-                  className={`flex items-center gap-3 px-3 py-2 ${window.location.pathname.substring(1) == menuItems.to.substring(1) && 'bg-gray-200 dark:bg-gray-700'} rounded-xl hover:rounded-lg my-1 transition-all hover:text-primary`}
+                  className={`flex items-center gap-3 px-3 py-2 ${window.location.pathname.substring(1) == menuItems.to.substring(1) && 'bg-gray-200 dark:bg-gray-700'} rounded-xl my-1 transition-all`}
                 >
                   {/* <Home className="h-4 w-4" /> */}
                   {menuItems?.title}
@@ -240,7 +227,7 @@ const AdminDashboard = () => {
                 <Link
                   key={menuItems?.to}
                   to={menuItems?.to}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all"
                 >
                   <Home className="h-4 w-4" />
                   {menuItems?.title}

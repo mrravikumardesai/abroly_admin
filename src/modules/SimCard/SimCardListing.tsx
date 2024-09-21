@@ -81,7 +81,6 @@ const SimCardListing = () => {
                 }
             >
                 <TableHeader>
-                    <TableColumn key="uuid">Title</TableColumn>
                     <TableColumn key="name">Title</TableColumn>
                     <TableColumn key="details">Details</TableColumn>
                     <TableColumn key="url">URL</TableColumn>

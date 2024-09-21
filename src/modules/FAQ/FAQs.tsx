@@ -80,8 +80,7 @@ const FAQs = () => {
                         <section className='flex flex-row gap-2'>
                            
                             <Button
-                                variant='flat'
-                                color='primary'
+                                 color='primary'
                                 onPress={() => {
                                     onAddFaqOpenChange()
                                 }}
