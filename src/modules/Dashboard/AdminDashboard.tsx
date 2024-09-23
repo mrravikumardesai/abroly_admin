@@ -30,10 +30,13 @@ const AdminDashboard = () => {
       title: "Home",
       to: "/",
     },
-
     {
       title: "Content Writing",
       to: "/content_writing",
+    },
+    {
+      title: "Language Preparation",
+      to: "/lang_prep",
     },
     {
       title: "Sim Card",
