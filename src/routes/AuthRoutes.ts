@@ -11,6 +11,13 @@ import StaticContent from "@/modules/Static_content/StaticContent"
 import StaticContentEdit from "@/modules/Static_content/StaticContentEdit"
 import StaticContentAdd from "@/modules/Static_content/StaticContentAdd"
 import ContentWritingDetails from "@/modules/ContentWriting/ContentWritingDetails"
+import LanguagePrep from "@/modules/language_prep/LanguagePrep"
+import LanguagePrepAdd from "@/modules/language_prep/LanguagePrepAdd"
+import ContentWritingPages from "@/modules/ContentWriting/ContentWritingPages"
+import LanguagePrepEdit from "@/modules/language_prep/LanguagePrepEdit"
+import LanguagePrepChapters from "@/modules/language_prep/chapters/LanguagePrepChapters"
+import ChapterAdd from "@/modules/language_prep/chapters/ChapterAdd"
+import ChapterEdit from "@/modules/language_prep/chapters/ChapterEdit"
 
 export const PublicRoutes = [
     {
@@ -49,6 +56,10 @@ export const AdminRoutes = [
         element: ContentWritingList
     },
     {
+        path: "/content_writing/page/:id",
+        element: ContentWritingPages
+    },
+    {
         path: "/sim_card",
         element: SimCardListing
     },
@@ -67,6 +78,30 @@ export const AdminRoutes = [
     {
         path: "/static/add",
         element: StaticContentAdd
+    },
+    {
+        path: "/lang_prep",
+        element: LanguagePrep
+    },
+    {
+        path: "/lang_prep/add",
+        element: LanguagePrepAdd
+    },
+    {
+        path: "/lang_prep/edit/:id",
+        element: LanguagePrepEdit
+    },
+    {
+        path: "/lang_prep/chapters/:id",
+        element: LanguagePrepChapters
+    },
+    {
+        path: "/lang_prep/chapters/add/:leval/:course_uuid",
+        element: ChapterAdd
+    },
+    {
+        path: "/lang_prep/chapters/edit/:leval/:course_uuid/:id",
+        element: ChapterEdit
     },
 
     // 404
