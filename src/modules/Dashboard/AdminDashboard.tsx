@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { AdminRoutes, PublicRoutes } from '../../routes/AuthRoutes';
 import ThemeToggle from '../../components/ThemeToggle';
@@ -19,7 +19,6 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const AdminDashboard = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   // for logout
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -57,118 +56,8 @@ const AdminDashboard = () => {
     },
 
   ]
-
-  console.log(window.location.pathname != "/");
   
   return (
-    // <div>
-    //   <Navbar
-    //     onMenuOpenChange={setIsMenuOpen}
-    //     isMenuOpen={isMenuOpen}
-    //   >
-    //     <NavbarContent>
-    //       <NavbarMenuToggle
-    //         className="sm:hidden"
-    //       />
-    //       <NavbarBrand>
-    //         {/* <AcmeLogo /> */}
-    //         <section
-    //           onClick={() => navigate("/")}
-    //         >
-    //           <p>Abroly</p>
-    //         </section>
-    //       </NavbarBrand>
-    //     </NavbarContent>
-
-    //     <NavbarContent className="hidden sm:flex gap-4" justify="end">
-    //       {SideMenu.map((item, index) => (
-    //         <NavbarMenuItem key={`${item}-${index}`}>
-    //           <Link
-    //             className='cursor-pointer text-primary'
-    //             onClick={() => {
-    //               navigate(item.to)
-    //               setIsMenuOpen(false)
-    //             }}
-    //           >
-    //             {item.title}
-    //           </Link>
-    //         </NavbarMenuItem>
-    //       ))}
-    //     </NavbarContent>
-    //     <NavbarContent as="div" justify="end">
-    //       <ThemeToggle />
-    //       <Dropdown placement="bottom-end">
-    //         <DropdownTrigger>
-    //           <Avatar
-    //             as="button"
-    //             className="transition-transform"
-    //             color="secondary"
-    //             size="sm"
-    //             // src={profileimage}
-    //             src={""}
-    //             showFallback
-    //           />
-    //         </DropdownTrigger>
-    //         <DropdownMenu aria-label="Profile Actions" variant="flat">
-    //           <DropdownItem key="profile" className="h-14 gap-2">
-    //             <p className="font-semibold">Signed in as</p>
-    //             {/* <p className="font-semibold">{user_name}</p> */}
-    //             <p className="font-semibold">{"user_name"}</p>
-    //           </DropdownItem>
-    //           <DropdownItem key="settings">My Settings</DropdownItem>
-    //           <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-    //           <DropdownItem key="logout" color="danger" onClick={onOpen}>
-    //             Log Out
-    //           </DropdownItem>
-    //         </DropdownMenu>
-    //       </Dropdown>
-    //       <NavbarMenuToggle
-    //         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-    //         className="sm:hidden"
-    //       />
-
-    //     </NavbarContent>
-    //     <NavbarMenu>
-    //       {SideMenu.map((item, index) => (
-    //         <NavbarMenuItem key={`${item}-${index}`}>
-    //           <Link
-    //             className="w-full"
-    //             // to={item.to}
-    //             onPress={() => {
-    //               navigate(item.to)
-    //               setIsMenuOpen(!isMenuOpen)
-    //             }}
-    //           >
-    //             {item.title}
-    //           </Link>
-    //         </NavbarMenuItem>
-    //       ))}
-    //     </NavbarMenu>
-    //   </Navbar>
-    //   <section className={`flex-grow overflow-auto `}>
-    //     <Routes>
-    //       {
-    //         AdminRoutes.map(
-    //           (item: any) => <Route key={item.path} path={item.path} element={<item.element />} />)
-    //       }
-    //     </Routes>
-
-    //     {/* <Footer footerLinks={adminLinks} /> */}
-    //     <Footer />
-
-    //   </section>
-    //   <CommonConfirmation
-    //     isOpen={isOpen}
-    //     onOpenChange={onOpenChange}
-    //     title={"Are you sure want to logout ?"}
-    //     handleSubmit={() => {
-    //       handleLogout(navigate)
-
-    //     }}
-    //     nagativeTitle={"No"}
-    //     positiveTitle={"Yes"}
-    //   />
-    // </div>
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">

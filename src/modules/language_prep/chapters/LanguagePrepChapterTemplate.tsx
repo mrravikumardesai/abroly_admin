@@ -1,15 +1,12 @@
-
-
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
 import { Button, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
-import { MdDelete, MdEdit } from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-const LanguagePrep = () => {
-
+const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
-
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -17,31 +14,31 @@ const LanguagePrep = () => {
   }, [])
 
   const initDetailsApiCall = async () => {
-    const { data, success } = await commonPostAPICall({uuid:""}, "/language_prep/list")
+    const { data, success } = await commonPostAPICall({ level: leval, course_uuid: uuid }, "/language_prep/chapters/list")
     if (success && success == true) {
       setData(data)
     }
   }
-
   return (
-    <div className='space-y-2'>
+    <div>
 
 
       <Table
         aria-label="Example table with client side pagination"
         topContent={
           <div className='flex flex-row justify-between items-center'>
-            <h1>Languages</h1>
+            <h1>Chapters</h1>
+
             <Button
               onPress={() => {
-                navigate("/lang_prep/add")
+                navigate(`/lang_prep/chapters/add/${leval}/${uuid}`)
               }}
-            >Add Language</Button>
+            >Add Chapter</Button>
           </div>
         }
       >
         <TableHeader>
-          <TableColumn key="title">Language Title</TableColumn>
+          <TableColumn key="chapter_name">Chapter Title</TableColumn>
           <TableColumn key="createdAt">Create At</TableColumn>
           <TableColumn key="action">Action</TableColumn>
         </TableHeader>
@@ -49,7 +46,7 @@ const LanguagePrep = () => {
           {(item: any) => (
             <TableRow key={item?.uuid} onClick={(e) => {
               e.stopPropagation()
-              navigate(`/lang_prep/edit/${getKeyValue(item, "uuid")}`)
+              // navigate(`/lang_prep/edit/${getKeyValue(item, "uuid")}`)
             }}
               className='cursor-pointer'
             >
@@ -59,7 +56,7 @@ const LanguagePrep = () => {
                   return <TableCell>
                     <div className='flex flex-row gap-2 items-center justify-start'>
 
-                      <Button
+                      {/* <Button
                         isIconOnly
                         variant='flat'
                         color='danger'
@@ -71,16 +68,17 @@ const LanguagePrep = () => {
                         }}
                       >
                         <MdDelete className='w-4 h-4' />
-                      </Button>
+                      </Button> */}
                       <Button
                         variant='flat'
                         color='primary'
                         size='sm'
                         onPress={() => {
-                          navigate(`/lang_prep/chapters/${getKeyValue(item, "uuid")}`)
+                          // navigate(`/lang_prep/chapters/${getKeyValue(item, "uuid")}`)
+                          navigate(`/lang_prep/chapters/edit/${leval}/${getKeyValue(item, "course_uuid")}/${getKeyValue(item, "uuid")}`)
                         }}
                       >
-                        Chapters
+                        Edit
                       </Button>
 
                     </div>
@@ -96,9 +94,9 @@ const LanguagePrep = () => {
           )}
         </TableBody>
       </Table>
-    </div>
 
+    </div>
   )
 }
 
-export default LanguagePrep
+export default LanguagePrepChapterTemplate

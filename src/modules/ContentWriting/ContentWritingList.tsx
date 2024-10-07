@@ -91,7 +91,7 @@ const ContentWritingList = () => {
                     {(item: any) => (
                         <TableRow key={item?.key} onClick={(e) => {
                             e.stopPropagation()
-                            // navigate(`/gst_registration_details/${getKeyValue(item, "key")}`)
+                            navigate(`/content_writing/page/${getKeyValue(item, "uuid")}`)
                         }}
                             className='cursor-pointer'
                         >
@@ -218,7 +218,7 @@ const ContentWritingList = () => {
                             <ModalBody>
                                 <Input
                                     value={updateTitleDesc.name}
-                                    label="Question"
+                                    label="Title"
                                     onChange={(e) => {
                                         setUpdateTitleDescription({
                                             ...updateTitleDesc,
@@ -228,7 +228,7 @@ const ContentWritingList = () => {
                                 />
                                 <Textarea
                                     value={updateTitleDesc.description}
-                                    label="Answer"
+                                    label="Short Description"
                                     onChange={(e) => {
                                         setUpdateTitleDescription({
                                             ...updateTitleDesc,

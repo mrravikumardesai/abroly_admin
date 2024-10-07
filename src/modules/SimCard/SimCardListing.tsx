@@ -65,6 +65,19 @@ const SimCardListing = () => {
             })
         }
     }
+    // delete
+
+    const { isOpen: isDeleteCnfOpen, onOpenChange: onDeleteCnfOpenChange } = useDisclosure();
+
+    const [deleteUUID, setDeleteUUID] = useState("")
+    const deleteFaqApiCall = async () => {
+        const { success } = await commonPostAPICall({ uuid: deleteUUID }, "sim/delete", true)
+        if (success && success == true) {
+            initDataApiCall()
+            onDeleteCnfOpenChange()
+            setDeleteUUID("")
+        }
+    }
 
     return (
         <div className='container mx-auto my-10'>
@@ -119,6 +132,20 @@ const SimCardListing = () => {
                                                 }}
                                             >
                                                 <MdEdit className='w-4 h-4 text-black dark:text-white' />
+                                            </Button>
+
+                                            <Button
+                                                isIconOnly
+                                                variant='flat'
+                                                color='danger'
+                                                size='sm'
+                                                onPress={() => {
+                                                    // navigate(`/services_details/${getKeyValue(item, "service_key")}`)
+                                                    setDeleteUUID(getKeyValue(item, "uuid"))
+                                                    onDeleteCnfOpenChange()
+                                                }}
+                                            >
+                                                <MdDelete className='w-4 h-4' />
                                             </Button>
 
                                         </div>
@@ -260,6 +287,18 @@ const SimCardListing = () => {
                     )}
                 </ModalContent>
             </Modal>
+
+
+            <CommonConfirmation
+                isOpen={isDeleteCnfOpen}
+                onOpenChange={onDeleteCnfOpenChange}
+                title={"Are you sure want to delete ?"}
+                handleSubmit={() => {
+                    deleteFaqApiCall()
+                }}
+                nagativeTitle={"No"}
+                positiveTitle={"Yes"}
+            />
         </div>
     )
 }
