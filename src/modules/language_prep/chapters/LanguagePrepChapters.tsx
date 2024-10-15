@@ -9,7 +9,7 @@ const LanguagePrepChapters = () => {
 
         <div>
             <Tabs variant="underlined" aria-label="Tabs variants">
-                <Tab key="Leval1" title="Leval 1" >
+                <Tab key="Leval1" title="Level A" >
                     <Card>
                         <CardBody>
                             <LanguagePrepChapterTemplate leval={"1"} uuid={id} />
@@ -17,14 +17,14 @@ const LanguagePrepChapters = () => {
                     </Card>
 
                 </Tab>
-                <Tab key="Leval2" title="Leval 2" >
+                <Tab key="Leval2" title="Level B" >
                     <Card>
                         <CardBody>
                             <LanguagePrepChapterTemplate leval={"2"} uuid={id} />
                         </CardBody>
                     </Card>
                 </Tab>
-                <Tab key="Leval3" title="Leval 3" >
+                <Tab key="Leval3" title="Level C" >
                     <Card>
                         <CardBody>
                             <LanguagePrepChapterTemplate leval={"3"} uuid={id} />
