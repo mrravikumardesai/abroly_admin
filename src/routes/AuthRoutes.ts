@@ -18,6 +18,9 @@ import LanguagePrepEdit from "@/modules/language_prep/LanguagePrepEdit"
 import LanguagePrepChapters from "@/modules/language_prep/chapters/LanguagePrepChapters"
 import ChapterAdd from "@/modules/language_prep/chapters/ChapterAdd"
 import ChapterEdit from "@/modules/language_prep/chapters/ChapterEdit"
+import SubChaptersList from "@/modules/language_prep/sub_chapters/SubChaptersList"
+import AddSubChapters from "@/modules/language_prep/sub_chapters/AddSubChapters"
+import UpdateSubChapter from "@/modules/language_prep/sub_chapters/UpdateSubChapter"
 
 export const PublicRoutes = [
     {
@@ -102,6 +105,20 @@ export const AdminRoutes = [
     {
         path: "/lang_prep/chapters/edit/:leval/:course_uuid/:id",
         element: ChapterEdit
+    },
+
+    // 
+    {
+        path: "/lang_prep/sub_chapters/:id",
+        element: SubChaptersList
+    },
+    {
+        path: "/lang_prep/add_sub_chapters/:id",
+        element: AddSubChapters
+    },
+    {
+        path: "/lang_prep/edit_sub_chapters/:id",
+        element: UpdateSubChapter
     },
 
     // 404

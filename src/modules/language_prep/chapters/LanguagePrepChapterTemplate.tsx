@@ -1,5 +1,6 @@
+import CommonConfirmation from '@/components/CommonConfirmation'
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
-import { Button, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
+import { Button, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -18,6 +19,18 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
     if (success && success == true) {
       setData(data)
     }
+  }
+
+  const [deleteUUID, setDeleteUUID] = useState("")
+
+  const { isOpen: isDeleteCnfOpen, onOpenChange: onDeleteCnfOpenChange } = useDisclosure();
+  const deleteFaqApiCall = async () => {
+      const { success } = await commonPostAPICall({ uuid: deleteUUID }, "/language_prep/chapters/delete", true)
+      if (success && success == true) {
+          initDetailsApiCall()
+          onDeleteCnfOpenChange()
+          setDeleteUUID("")
+      }
   }
   return (
     <div>
@@ -46,7 +59,9 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
           {(item: any) => (
             <TableRow key={item?.uuid} onClick={(e) => {
               e.stopPropagation()
+              // 
               // navigate(`/lang_prep/edit/${getKeyValue(item, "uuid")}`)
+              navigate(`/lang_prep/sub_chapters/${getKeyValue(item, "uuid")}`)
             }}
               className='cursor-pointer'
             >
@@ -56,19 +71,19 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
                   return <TableCell>
                     <div className='flex flex-row gap-2 items-center justify-start'>
 
-                      {/* <Button
+                      <Button
                         isIconOnly
                         variant='flat'
                         color='danger'
                         size='sm'
                         onPress={() => {
                           // navigate(`/services_details/${getKeyValue(item, "service_key")}`)
-                          // setDeleteUUID(getKeyValue(item, "uuid"))
-                          // onDeleteCnfOpenChange()
+                          setDeleteUUID(getKeyValue(item, "uuid"))
+                          onDeleteCnfOpenChange()
                         }}
                       >
                         <MdDelete className='w-4 h-4' />
-                      </Button> */}
+                      </Button>
                       <Button
                         variant='flat'
                         color='primary'
@@ -94,6 +109,17 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
           )}
         </TableBody>
       </Table>
+
+      <CommonConfirmation
+                isOpen={isDeleteCnfOpen}
+                onOpenChange={onDeleteCnfOpenChange}
+                title={"Are you sure want to delete ?"}
+                handleSubmit={() => {
+                    deleteFaqApiCall()
+                }}
+                nagativeTitle={"No"}
+                positiveTitle={"Yes"}
+            />
 
     </div>
   )
