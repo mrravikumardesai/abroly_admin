@@ -41,6 +41,10 @@ const AdminDashboard = () => {
       title: "Sim Card",
       to: "/sim_card",
     },
+    {
+      title: "Health Insurance",
+      to: "/health_in",
+    },
 
     {
       title: "Faqs",
