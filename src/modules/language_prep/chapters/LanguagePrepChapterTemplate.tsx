@@ -25,12 +25,12 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
 
   const { isOpen: isDeleteCnfOpen, onOpenChange: onDeleteCnfOpenChange } = useDisclosure();
   const deleteFaqApiCall = async () => {
-      const { success } = await commonPostAPICall({ uuid: deleteUUID }, "/language_prep/chapters/delete", true)
-      if (success && success == true) {
-          initDetailsApiCall()
-          onDeleteCnfOpenChange()
-          setDeleteUUID("")
-      }
+    const { success } = await commonPostAPICall({ uuid: deleteUUID }, "/language_prep/chapters/delete", true)
+    if (success && success == true) {
+      initDetailsApiCall()
+      onDeleteCnfOpenChange()
+      setDeleteUUID("")
+    }
   }
   return (
     <div>
@@ -111,15 +111,15 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
       </Table>
 
       <CommonConfirmation
-                isOpen={isDeleteCnfOpen}
-                onOpenChange={onDeleteCnfOpenChange}
-                title={"Are you sure want to delete ?"}
-                handleSubmit={() => {
-                    deleteFaqApiCall()
-                }}
-                nagativeTitle={"No"}
-                positiveTitle={"Yes"}
-            />
+        isOpen={isDeleteCnfOpen}
+        onOpenChange={onDeleteCnfOpenChange}
+        title={"Are you sure want to delete ?"}
+        handleSubmit={() => {
+          deleteFaqApiCall()
+        }}
+        nagativeTitle={"No"}
+        positiveTitle={"Yes"}
+      />
 
     </div>
   )
