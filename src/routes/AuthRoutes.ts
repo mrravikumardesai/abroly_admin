@@ -21,6 +21,7 @@ import ChapterEdit from "@/modules/language_prep/chapters/ChapterEdit"
 import SubChaptersList from "@/modules/language_prep/sub_chapters/SubChaptersList"
 import AddSubChapters from "@/modules/language_prep/sub_chapters/AddSubChapters"
 import UpdateSubChapter from "@/modules/language_prep/sub_chapters/UpdateSubChapter"
+import HealthIns from "@/modules/HealthInsurance/HealthIns"
 
 export const PublicRoutes = [
     {
@@ -65,6 +66,10 @@ export const AdminRoutes = [
     {
         path: "/sim_card",
         element: SimCardListing
+    },
+    {
+        path: "/health_in",
+        element: HealthIns
     },
     {
         path: "/static_content",
