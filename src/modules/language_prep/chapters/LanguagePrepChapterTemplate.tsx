@@ -17,7 +17,7 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
   const initDetailsApiCall = async () => {
     const { data, success } = await commonPostAPICall({ level: leval, course_uuid: uuid }, "/language_prep/chapters/list")
     if (success && success == true) {
-      setData(data)
+      setData(data?.sort((a,b)=> a.order_number - b.order_number ))
     }
   }
 
@@ -51,6 +51,7 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
         }
       >
         <TableHeader>
+          <TableColumn key="order_number">Order</TableColumn>
           <TableColumn key="chapter_name">Chapter Title</TableColumn>
           <TableColumn key="createdAt">Create At</TableColumn>
           <TableColumn key="action">Action</TableColumn>

@@ -33,7 +33,8 @@ const SubChaptersList = () => {
     const initDetailsApiCall = async () => {
         const { data, success } = await commonPostAPICall({ uuid: id }, "/language_prep/sub_chapters/list")
         if (success && success == true) {
-            setData(data)
+            // setData(data)
+            setData(data?.sort((a,b)=> a.order_number - b.order_number ))
         }
     }
     return (
@@ -55,6 +56,7 @@ const SubChaptersList = () => {
                 }
             >
                 <TableHeader>
+                    <TableColumn key="order_number">Order</TableColumn>
                     <TableColumn key="title">Chapter Title</TableColumn>
                     <TableColumn key="createdAt">Create At</TableColumn>
                     <TableColumn key="action">Action</TableColumn>
