@@ -10,8 +10,7 @@ const ChapterAddEditTemplate = ({ isNew, uuid = "" ,level="1",course_uuid=""}) =
 
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [files, setFiles] = useState()
-  const [existFile, setExistFile] = useState()
+  const [order_number,setOrderNumber] = useState("0")
   const navigate = useNavigate()
 
   useEffect(()=>{
@@ -27,6 +26,7 @@ const ChapterAddEditTemplate = ({ isNew, uuid = "" ,level="1",course_uuid=""}) =
     if (success && success == true) {
       setTitle(data?.chapter_name)
       setDescription(data?.description)
+      setOrderNumber(data?.order_number)
     }
   }
   const addLanguage = async () => {
@@ -45,7 +45,8 @@ const ChapterAddEditTemplate = ({ isNew, uuid = "" ,level="1",course_uuid=""}) =
     const { data, success } = await commonPostAPICall({ 
       chapter_name:title,
       description:description,
-      uuid
+      uuid,
+      order_number
     }, "/language_prep/chapters/update",true)
     if (success && success == true) {
       SuccessToast("Updated")
@@ -65,6 +66,16 @@ const ChapterAddEditTemplate = ({ isNew, uuid = "" ,level="1",course_uuid=""}) =
 
             <p className='text-md font-bold'>Basic Information</p>
             <section className='space-y-3'>
+               
+               {isNew == false && <Input
+                    label="Order"
+                    inputMode='numeric'
+                    value={order_number}
+                    variant='bordered'
+                    onChange={(e) => {
+                      setOrderNumber(e.target.value)
+                    }}
+                />}
                 <Input
                     label="Title"
                     value={title}

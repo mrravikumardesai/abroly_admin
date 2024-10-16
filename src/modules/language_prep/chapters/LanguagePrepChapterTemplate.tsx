@@ -1,6 +1,6 @@
 import CommonConfirmation from '@/components/CommonConfirmation'
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
-import { Button, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@nextui-org/react'
+import { Button, Card, CardBody, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -17,7 +17,7 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
   const initDetailsApiCall = async () => {
     const { data, success } = await commonPostAPICall({ level: leval, course_uuid: uuid }, "/language_prep/chapters/list")
     if (success && success == true) {
-      setData(data)
+      setData(data?.sort((a,b)=> a.order_number - b.order_number ))
     }
   }
 
@@ -42,15 +42,26 @@ const LanguagePrepChapterTemplate = ({ leval, uuid }) => {
           <div className='flex flex-row justify-between items-center'>
             <h1>Chapters</h1>
 
+            <div className='space-x-2'>
             <Button
+              onPress={() => {
+                navigate(`/lang_prep/quiz/${leval}/${uuid}`)
+              }}
+              color='primary'
+            >Quiz</Button>
+
+            <Button
+              color='primary'
               onPress={() => {
                 navigate(`/lang_prep/chapters/add/${leval}/${uuid}`)
               }}
             >Add Chapter</Button>
+            </div>
           </div>
         }
       >
         <TableHeader>
+          <TableColumn key="order_number">Order</TableColumn>
           <TableColumn key="chapter_name">Chapter Title</TableColumn>
           <TableColumn key="createdAt">Create At</TableColumn>
           <TableColumn key="action">Action</TableColumn>

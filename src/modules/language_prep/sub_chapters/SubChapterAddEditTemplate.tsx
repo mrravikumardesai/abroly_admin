@@ -15,6 +15,7 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
     const [url, setUrl] = useState("")
     const [files, setFiles] = useState()
     const [existFile, setExistFile] = useState()
+    const [order_number,setOrderNumber] = useState("0")
 
     const navigate = useNavigate()
 
@@ -34,6 +35,7 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
             setDescription(data?.short_description)
             setUrl(data?.video_url)
             setExistFile(data?.access_banner)
+            setOrderNumber(data?.order_number)
         }
     }
 
@@ -72,6 +74,7 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
         formData.append("short_description", description)
         formData.append("video_url", url)
         formData.append("uuid", uuid)
+        formData.append("order_number", order_number)
 
         const response = await axios.post(`${BaseUrl}/v1/language_prep/sub_chapters/update`, formData, {
             headers: {
@@ -99,6 +102,15 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
 
             <p className='text-md font-bold'>Basic Information</p>
             <section className='space-y-3'>
+            {isNew == false && <Input
+                    label="Order"
+                    inputMode='numeric'
+                    value={order_number}
+                    variant='bordered'
+                    onChange={(e) => {
+                      setOrderNumber(e.target.value)
+                    }}
+                />}
                 <Input
                     label="Title"
                     value={title}

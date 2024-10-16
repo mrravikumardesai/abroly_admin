@@ -22,6 +22,7 @@ import SubChaptersList from "@/modules/language_prep/sub_chapters/SubChaptersLis
 import AddSubChapters from "@/modules/language_prep/sub_chapters/AddSubChapters"
 import UpdateSubChapter from "@/modules/language_prep/sub_chapters/UpdateSubChapter"
 import HealthIns from "@/modules/HealthInsurance/HealthIns"
+import QuizList from "@/modules/language_prep/chapters/QuizList"
 
 export const PublicRoutes = [
     {
@@ -112,7 +113,7 @@ export const AdminRoutes = [
         element: ChapterEdit
     },
 
-    // 
+    // sub chapters
     {
         path: "/lang_prep/sub_chapters/:id",
         element: SubChaptersList
@@ -124,6 +125,12 @@ export const AdminRoutes = [
     {
         path: "/lang_prep/edit_sub_chapters/:id",
         element: UpdateSubChapter
+    },
+
+    // quiz
+    {
+        path: "/lang_prep/quiz/:leval/:course_uuid",
+        element: QuizList
     },
 
     // 404
