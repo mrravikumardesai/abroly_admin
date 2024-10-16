@@ -10,6 +10,10 @@ import {
 
   Home,
 
+  LucideLanguages,
+
+  LucideShieldQuestion,
+
   Menu,
 
 } from "lucide-react"
@@ -17,6 +21,10 @@ import {
 
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { RiHealthBookLine, RiHome5Line } from 'react-icons/ri';
+import { MdLanguage, MdOutlineDocumentScanner, MdOutlineReviews, MdOutlineSimCard } from 'react-icons/md';
+import { BsQuestion } from 'react-icons/bs';
+import { PiNewspaper } from 'react-icons/pi';
 
 const AdminDashboard = () => {
 
@@ -28,35 +36,50 @@ const AdminDashboard = () => {
     {
       title: "Home",
       to: "/",
+      icon: <RiHome5Line className="h-4 w-4"/>
     },
     {
       title: "Content Writing",
       to: "/content_writing",
+      icon: <MdOutlineDocumentScanner className="h-4 w-4" />
+
     },
     {
       title: "Language Preparation",
       to: "/lang_prep",
+      icon: <LucideLanguages className="h-4 w-4"/>
+
     },
     {
       title: "Sim Card",
       to: "/sim_card",
+      icon: <MdOutlineSimCard className="h-4 w-4"/>
+
     },
     {
       title: "Health Insurance",
       to: "/health_in",
+      icon: <RiHealthBookLine className="h-4 w-4"/>
+
     },
 
     {
       title: "Faqs",
       to: "/faqs",
+      icon: <LucideShieldQuestion className="h-4 w-4"/>
+
     },
     {
       title: "Static Content",
       to: "/static_content",
+      icon: <PiNewspaper className="h-4 w-4"/>
+
     },
     {
       title: "Testimonials",
       to: "/testimonails",
+      icon: <MdOutlineReviews className="h-4 w-4"/>
+
     },
 
   ]
@@ -67,7 +90,6 @@ const AdminDashboard = () => {
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link to="/" className="flex items-center gap-2 font-semibold">
-              {/* <Package2 className="h-6 w-6" /> */}
               <span className="">Abroly</span>
             </Link>
           </div>
@@ -77,31 +99,14 @@ const AdminDashboard = () => {
                 <Link
                   key={menuItems?.to}
                   to={menuItems?.to}
-                  className={`flex items-center gap-3 px-3 py-2 ${window.location.pathname.substring(1) == menuItems.to.substring(1) && 'bg-gray-200 dark:bg-gray-700'} rounded-xl my-1 transition-all`}
+                  className={`flex items-center justify-start gap-3 px-3 py-2 ${window.location.pathname.substring(1) == menuItems.to.substring(1) && 'bg-gray-200 dark:bg-gray-700'} rounded-xl my-1 transition-all font-bold`}
                 >
-                  {/* <Home className="h-4 w-4" /> */}
+                  {menuItems?.icon}
                   {menuItems?.title}
                 </Link>
               ))}
             </nav>
           </div>
-          {/* <div className="mt-auto p-4"> */}
-            {/* <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button size="sm" className="w-full">
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card> */}
-            {/* <p>Footer Content</p> */}
-          {/* </div> */}
         </div>
       </div>
       <div className="flex flex-col">
@@ -125,60 +130,18 @@ const AdminDashboard = () => {
                   to={menuItems?.to}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all"
                 >
-                  <Home className="h-4 w-4" />
+                  {menuItems?.icon}
                   {menuItems?.title}
                 </Link>
               ))}
 
               </nav>
-              <div className="mt-auto">
-                {/* <Card>
-                  <CardHeader>
-                    <CardTitle>Upgrade to Pro</CardTitle>
-                    <CardDescription>
-                      Unlock all features and get unlimited access to our
-                      support team.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button size="sm" className="w-full">
-                      Upgrade
-                    </Button>
-                  </CardContent>
-                </Card> */}
-              </div>
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
-            {/* <form>
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-              />
-            </div>
-          </form> */}
-            <p>Header Content</p>
+            {/* <p>Header Content</p> */}
           </div>
-          <ThemeToggle />
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="flat" isIconOnly className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
+          {/* <ThemeToggle /> */}
            <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -205,7 +168,7 @@ const AdminDashboard = () => {
             </DropdownMenu>
           </Dropdown>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 ">
             <Routes>
               {
                 AdminRoutes.map(
