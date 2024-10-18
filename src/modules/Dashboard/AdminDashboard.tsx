@@ -15,6 +15,7 @@ import {
   LucideShieldQuestion,
 
   Menu,
+  User,
 
 } from "lucide-react"
 
@@ -39,10 +40,19 @@ const AdminDashboard = () => {
       icon: <RiHome5Line className="h-4 w-4"/>
     },
     {
+      title: "Agents",
+      to: "/agents",
+      icon: <User className="h-4 w-4" />
+    },
+    {
+      title: "Student",
+      to: "/student",
+      icon: <User className="h-4 w-4" />
+    },
+    {
       title: "Content Writing",
       to: "/content_writing",
       icon: <MdOutlineDocumentScanner className="h-4 w-4" />
-
     },
     {
       title: "Language Preparation",
@@ -79,10 +89,11 @@ const AdminDashboard = () => {
       title: "Testimonials",
       to: "/testimonails",
       icon: <MdOutlineReviews className="h-4 w-4"/>
-
     },
 
   ]
+
+  const [openMenu,setMenuOpen]  = useState(false)
   
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -111,7 +122,7 @@ const AdminDashboard = () => {
       </div>
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-          <Sheet>
+          <Sheet open={openMenu} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="flat"
@@ -122,12 +133,15 @@ const AdminDashboard = () => {
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col">
+            <SheetContent side="left" className="flex flex-col w-30">
               <nav className="grid gap-2 text-lg font-medium">
               {SideMenu.map((menuItems: any) => (
                 <Link
                   key={menuItems?.to}
                   to={menuItems?.to}
+                  onClick={()=>{
+                    setMenuOpen(false)
+                  }}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all"
                 >
                   {menuItems?.icon}

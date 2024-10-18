@@ -23,6 +23,10 @@ import AddSubChapters from "@/modules/language_prep/sub_chapters/AddSubChapters"
 import UpdateSubChapter from "@/modules/language_prep/sub_chapters/UpdateSubChapter"
 import HealthIns from "@/modules/HealthInsurance/HealthIns"
 import QuizList from "@/modules/language_prep/chapters/QuizList"
+import Agents from "@/modules/Agents/Agents"
+import AgentDetails from "@/modules/Agents/AgentDetails"
+import Students from "@/modules/Students/Students"
+import StudentDetails from "@/modules/Students/StudentDetails"
 
 export const PublicRoutes = [
     {
@@ -131,6 +135,25 @@ export const AdminRoutes = [
     {
         path: "/lang_prep/quiz/:leval/:course_uuid",
         element: QuizList
+    },
+
+    // agents 
+    {
+        path: "/agents",
+        element: Agents
+    },
+    {
+        path: "/agents/:id",
+        element: AgentDetails
+    },
+    // student
+    {
+        path: "/student",
+        element: Students
+    },
+    {
+        path: "/student/:id",
+        element: StudentDetails
     },
 
     // 404
