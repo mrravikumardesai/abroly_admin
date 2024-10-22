@@ -80,7 +80,7 @@ const HealthIns = () => {
     }
 
     return (
-        <div className='container mx-auto my-10'>
+        <div className='container mx-auto'>
             <Table
                 aria-label="Example table with client side pagination"
                 topContent={

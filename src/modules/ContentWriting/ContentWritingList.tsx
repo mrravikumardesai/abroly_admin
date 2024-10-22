@@ -71,7 +71,7 @@ const ContentWritingList = () => {
 
 
     return (
-        <div className='container mx-auto my-10 space-y-5'>
+        <div className='container mx-auto space-y-5'>
             <Table
                 aria-label="Example table with client side pagination"
                 topContent={
