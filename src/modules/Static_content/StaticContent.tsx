@@ -40,19 +40,23 @@ const StaticContent = () => {
 
   return (
     <div>
-      <div className='flex flex-row justify-end w-full items-center my-2'>
-        <Button
-          onPress={() => {
-            navigate(`/static/add`)
-          }}
-          color='primary'
-        >
-          Add Static Page
-        </Button>
-      </div>
+
 
       <Table
         aria-label="Example table with client side pagination"
+        topContent={
+          <div className='flex flex-row justify-between w-full items-center'>
+            <h1>Static Pages</h1>
+            <Button
+              onPress={() => {
+                navigate(`/static/add`)
+              }}
+              color='primary'
+            >
+              Add Static Page
+            </Button>
+          </div>
+        }
       >
         <TableHeader>
           <TableColumn key="title">Title</TableColumn>
