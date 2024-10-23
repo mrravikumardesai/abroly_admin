@@ -119,6 +119,18 @@ const data = {
         },
       ],
     },
+    {
+      title: "Subscription",
+      url: "#",
+      icon: FileText,
+      isActive: true,
+      items: [
+        {
+          title: "Packages",
+          url: "/packages",
+        },
+      ],
+    },
   ],
   navSecondary: [
     {
