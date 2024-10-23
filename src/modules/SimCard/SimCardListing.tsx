@@ -288,7 +288,6 @@ const SimCardListing = () => {
                 </ModalContent>
             </Modal>
 
-
             <CommonConfirmation
                 isOpen={isDeleteCnfOpen}
                 onOpenChange={onDeleteCnfOpenChange}
@@ -299,6 +298,7 @@ const SimCardListing = () => {
                 nagativeTitle={"No"}
                 positiveTitle={"Yes"}
             />
+            
         </div>
     )
 }
