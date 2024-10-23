@@ -8,33 +8,35 @@ const ActiveSubscription = ({ agentUuid }) => {
     const [subscription, setSubscription] = useState(null);
 
     useEffect(() => {
-        const fetchSubscription = async () => {
-            const { data, success } = await commonGetAPICalls(`subscription/agennt/${agentUuid}`)
-            if (success && success == true) {
-                setSubscription(data)
-            }
-        };
-
         fetchSubscription();
     }, [agentUuid]);
+
+    const fetchSubscription = async () => {
+        const { data, success } = await commonGetAPICalls(`/subscription/agent/${agentUuid}`)
+        if (success && success == true) {
+            setSubscription(data)
+        }
+    };
 
     return (
         <Card>
             <CardHeader>
                 <h3 className="text-xl font-bold">Active Subscription</h3>
             </CardHeader>
-            {subscription ? (
-                <CardBody>
-                    <p>Package: {subscription.packageName}</p>
-                    <p>Lead Limit: {subscription.leadLimit}</p>
-                    <p>Team Members: {subscription.teamLimit}</p>
-                    <p>Expiry: {new Date(subscription.expiryDate).toLocaleDateString()}</p>
-                </CardBody>
-            ) : (
-                <>
-                    <p>No active subscription found.</p>
-                    <AssignSubscription agentUuid={agentUuid} /></>
-            )}
+            <CardBody>
+                {subscription ? (
+                    <>
+                        <p>Package: {subscription?.Package?.name}</p>
+                        <p>Lead Limit: {subscription.leads_remaining}</p>
+                        <p>Start From: {new Date(subscription.subscription_start_date).toLocaleDateString()}</p>
+                    </>
+                ) : (
+                    <>
+                        <p>No active subscription found.</p>
+                        <AssignSubscription agentUuid={agentUuid} refreshEvent={fetchSubscription} />
+                    </>
+                )}
+            </CardBody>
             <CardFooter>
                 {/* <Button icon={<LucideIcon name="refresh" />} onClick={() => window.location.reload()}>
           Refresh

@@ -16,23 +16,27 @@ const commonPostAPICall = async (params: object, url: string, showError = false)
             }
         })
             .then((response: AxiosResponse) => {
-                if (response?.status == 200 && response?.data?.success == false) {
-                    ErrorToast(response?.data?.message)
-                }
-
-                if (response?.status === 200 && response?.data?.success == true) {
-                    returnValue.success = true
-                    returnValue.data = response?.data?.data
-                    if (response?.data?.total) {
-                        returnValue.total = response?.data?.total
+                if (response) {
+                    if (response?.status == 200 && response?.data?.success == false) {
+                        ErrorToast(response?.data?.message)
                     }
-                } 
 
-                if(showError == true && response?.data?.success == true){
-                    SuccessToast(response?.data?.message)
+                    if (response?.status === 200 && response?.data?.success == true) {
+                        returnValue.success = true
+                        returnValue.data = response?.data?.data
+                        if (response?.data?.total) {
+                            returnValue.total = response?.data?.total
+                        }
+                    }
+
+                    if (showError == true && response?.data?.success == true) {
+                        SuccessToast(response?.data?.message)
+                    }
+                } else {
+                    throw new Error("Something went wrong")
                 }
             }).catch((e: AxiosError) => {
-                ErrorToast(e.message)
+                ErrorToast(e?.message)
                 console.log(e.message);
             })
     }
@@ -44,23 +48,26 @@ const commonPostPublicAPICall = async (params: object, url: string, showError = 
 
     await axios.post(`${BaseUrl}/v1/${url}`, params)
         .then((response: AxiosResponse) => {
-            if (response?.status == 200 && response?.data?.success == false && showError == true) {
-                ErrorToast(response?.data?.message)
-            }
-            if (response?.status == 200 && response?.data?.success == true && showError == true) {
-                SuccessToast(response?.data?.message)
-            }
-
-            if (response?.status === 200 && response?.data?.success == true) {
-                returnValue.success = true
-                returnValue.data = response?.data?.data
-                if (response?.data?.total) {
-                    returnValue.total = response?.data?.total
+            if (response) {
+                if (response?.status == 200 && response?.data?.success == false && showError == true) {
+                    ErrorToast(response?.data?.message)
                 }
-            } 
-        }).catch((e: AxiosError) => {
-            ErrorToast(e.message)
-            console.log(e.message);
+                if (response?.status == 200 && response?.data?.success == true && showError == true) {
+                    SuccessToast(response?.data?.message)
+                }
+
+                if (response?.status === 200 && response?.data?.success == true) {
+                    returnValue.success = true
+                    returnValue.data = response?.data?.data
+                    if (response?.data?.total) {
+                        returnValue.total = response?.data?.total
+                    }
+                }
+            } else {
+                throw new Error("Something went wrong")
+            }
+        }).catch((error: any) => {
+            ErrorToast("Server Error")
         })
 
 
