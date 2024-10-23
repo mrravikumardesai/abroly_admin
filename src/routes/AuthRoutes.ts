@@ -27,6 +27,7 @@ import Agents from "@/modules/Agents/Agents"
 import AgentDetails from "@/modules/Agents/AgentDetails"
 import Students from "@/modules/Students/Students"
 import StudentDetails from "@/modules/Students/StudentDetails"
+import PackageList from "@/modules/Package/PackageList"
 
 export const PublicRoutes = [
     {
@@ -154,6 +155,12 @@ export const AdminRoutes = [
     {
         path: "/student/:id",
         element: StudentDetails
+    },
+    
+    // packages
+    {
+        path: "/packages",
+        element: PackageList
     },
 
     // 404
