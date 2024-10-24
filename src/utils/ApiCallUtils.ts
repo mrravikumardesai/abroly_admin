@@ -37,7 +37,7 @@ const commonPostAPICall = async (params: object, url: string, showError = false)
                 }
             }).catch((e: AxiosError) => {
                 ErrorToast(e?.message)
-                console.log(e.message);
+                // console.log(e.message);
             })
     }
 
@@ -85,7 +85,7 @@ const commonGetAPICalls = async (url: string) => {
             }
         })
             .then((response: AxiosResponse) => {
-                console.log(response, "RES");
+                // console.log(response, "RES");
 
                 if (response?.status === 200 && response?.data?.success == true) {
                     returnValue.success = true
@@ -95,7 +95,7 @@ const commonGetAPICalls = async (url: string) => {
                 }
             }).catch((e: AxiosError) => {
                 ErrorToast(e.message)
-                console.log(e);
+                // console.log(e);
             })
     }
 
@@ -109,7 +109,7 @@ const commonPublicGetApiCalls = async (url: string) => {
     await axios.get(`${BaseUrl}/v1${url}`, {
     })
         .then((response: AxiosResponse) => {
-            console.log(response, "RES");
+            // console.log(response, "RES");
 
             if (response?.status === 200 && response?.data?.success == true) {
                 returnValue.success = true
@@ -119,7 +119,7 @@ const commonPublicGetApiCalls = async (url: string) => {
             }
         }).catch((e: AxiosError) => {
             ErrorToast(e.message)
-            console.log(e);
+            // console.log(e);
         })
 
     return returnValue
