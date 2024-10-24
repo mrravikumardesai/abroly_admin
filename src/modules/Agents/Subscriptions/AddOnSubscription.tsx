@@ -134,7 +134,7 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
             <Drawer open={isCustomOpen} onOpenChange={setIsCutomeOpen}>
                 <DrawerContent>
                     <div className="p-6 overflow-y-scroll">
-                        <h2 className="text-2xl font-bold mb-2">Assign Custom Package</h2>
+                        <h2 className="text-2xl font-bold mb-2">Assign Custom Add on</h2>
 
                         <section className='grid grid-cols-2 gap-2'>
 
