@@ -1,5 +1,5 @@
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
-import { Avatar, Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Pagination, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, getKeyValue, useDisclosure } from '@nextui-org/react'
+import { Avatar, Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Pagination, Spinner, Switch, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, getKeyValue, useDisclosure } from '@nextui-org/react'
 import { Edit, Search } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -98,6 +98,18 @@ const Agents = () => {
         }
     }
 
+    const statusChangeApiCall = async (uuid, action) => {
+        setIsLoading(true)
+        const { success } = await commonPostAPICall({
+            uuid, action
+        }, "/agent/toggle")
+
+        if (success && success == true) {
+            findAgents()
+        }
+
+    }
+
     const navigate = useNavigate()
 
     return (
@@ -150,8 +162,8 @@ const Agents = () => {
                     <TableColumn key="phone_number">Phone Number</TableColumn>
                     <TableColumn key="email">Email</TableColumn>
                     <TableColumn key="role">Role</TableColumn>
-                    <TableColumn key="status">Status</TableColumn>
                     <TableColumn key="is_verified">Verified</TableColumn>
+                    <TableColumn key="status">Status</TableColumn>
                     <TableColumn key="createdAt">Create At</TableColumn>
                     <TableColumn key="action">Action</TableColumn>
                 </TableHeader>
@@ -165,7 +177,7 @@ const Agents = () => {
                         <TableRow key={item?.uuid} onClick={(e) => {
                             e.stopPropagation()
                             // navigate(`/agents/${getKeyValue(item, "uuid")}`,)
-                            window.open(`/agents/${getKeyValue(item, "uuid")}`,"_blank")
+                            window.open(`/agents/${getKeyValue(item, "uuid")}`, "_blank")
                         }}
                             className='cursor-pointer'
                         >
@@ -175,7 +187,6 @@ const Agents = () => {
                                 if (columnKey == "action") {
                                     return <TableCell>
                                         <div className='flex flex-row gap-2 items-center justify-start'>
-
                                             <Button
                                                 isIconOnly
                                                 variant='light'
@@ -211,7 +222,20 @@ const Agents = () => {
 
                                         </div>
                                     </TableCell>
-                                } else if (columnKey == "createdAt") {
+                                } else if (columnKey == "status") {
+                                    return <TableCell>
+                                        <Switch
+                                            isSelected={getKeyValue(item, "status") == "active" ? true : false}
+                                            size='sm'
+                                            onValueChange={(v) => {
+                                                console.log(v);
+                                                statusChangeApiCall(getKeyValue(item, "uuid"), v == true ? "active" : "inactive")
+                                            }}>
+                                            {getKeyValue(item, "status")?.toUpperCase()}
+                                        </Switch>
+                                    </TableCell>
+                                }
+                                else if (columnKey == "createdAt") {
                                     return <TableCell>{new Date(getKeyValue(item, "createdAt")).toLocaleString()}</TableCell>
                                 } else if (columnKey == "access_profile") {
                                     return <TableCell>
