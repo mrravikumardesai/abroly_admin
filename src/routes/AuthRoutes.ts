@@ -28,6 +28,7 @@ import AgentDetails from "@/modules/Agents/AgentDetails"
 import Students from "@/modules/Students/Students"
 import StudentDetails from "@/modules/Students/StudentDetails"
 import PackageList from "@/modules/Package/PackageList"
+import ActiveSubscription from "@/modules/Agents/Subscriptions/ActiveSubscription"
 
 export const PublicRoutes = [
     {
@@ -147,6 +148,11 @@ export const AdminRoutes = [
         path: "/agents/:id",
         element: AgentDetails
     },
+    {
+        path: "/agents/subscription/:id",
+        element: ActiveSubscription
+    },
+
     // student
     {
         path: "/student",
@@ -156,7 +162,7 @@ export const AdminRoutes = [
         path: "/student/:id",
         element: StudentDetails
     },
-    
+
     // packages
     {
         path: "/packages",
