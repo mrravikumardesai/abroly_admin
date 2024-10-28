@@ -1,3 +1,4 @@
+import { QuillFormats, QuillModules } from '@/components/ReactQuillNavOptions'
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
 import { ErrorToast, SuccessToast } from '@/utils/Toaster'
 import { getAuthToken } from '@/utils/localstorage'
@@ -15,7 +16,7 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
     const [url, setUrl] = useState("")
     const [files, setFiles] = useState()
     const [existFile, setExistFile] = useState()
-    const [order_number,setOrderNumber] = useState("0")
+    const [order_number, setOrderNumber] = useState("0")
 
     const navigate = useNavigate()
 
@@ -102,13 +103,13 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
 
             <p className='text-md font-bold'>Basic Information</p>
             <section className='space-y-3'>
-            {isNew == false && <Input
+                {isNew == false && <Input
                     label="Order"
                     inputMode='numeric'
                     value={order_number}
                     variant='bordered'
                     onChange={(e) => {
-                      setOrderNumber(e.target.value)
+                        setOrderNumber(e.target.value)
                     }}
                 />}
                 <Input
@@ -127,7 +128,11 @@ const SubChapterAddEditTemplate = ({ isNew, uuid, chapter_uuid }) => {
                         setUrl(e.target.value)
                     }}
                 />
-                <ReactQuill theme="snow" value={description}
+                <ReactQuill
+                    theme="snow"
+                    value={description}
+                    modules={QuillModules}
+                    formats={QuillFormats}
                     onChange={(value) => {
                         setDescription(value)
                     }}

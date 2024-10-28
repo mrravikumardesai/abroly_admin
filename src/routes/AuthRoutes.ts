@@ -29,6 +29,8 @@ import Students from "@/modules/Students/Students"
 import StudentDetails from "@/modules/Students/StudentDetails"
 import PackageList from "@/modules/Package/PackageList"
 import ActiveSubscription from "@/modules/Agents/Subscriptions/ActiveSubscription"
+import ServiceInfo from "@/modules/ServiceInfo/ServiceInfo"
+import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
 
 export const PublicRoutes = [
     {
@@ -167,6 +169,16 @@ export const AdminRoutes = [
     {
         path: "/packages",
         element: PackageList
+    },
+
+    // service information
+    {
+        path:"/services_info",
+        element:ServiceInfo
+    },
+    {
+        path:"/services_info/:service",
+        element:AddUpdateServiceInfo
     },
 
     // 404

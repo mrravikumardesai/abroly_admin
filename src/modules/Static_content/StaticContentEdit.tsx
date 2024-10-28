@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import { useNavigate, useParams } from 'react-router-dom'
 import 'react-quill/dist/quill.snow.css';
+import { QuillFormats, QuillModules } from '@/components/ReactQuillNavOptions'
 
 const StaticContentEdit = () => {
 
@@ -66,7 +67,11 @@ const StaticContentEdit = () => {
                         // setUrl(e.target.value)
                     }}
                 />
-                <ReactQuill theme="snow" value={description}
+                <ReactQuill 
+                    theme="snow" 
+                    value={description}
+                    modules={QuillModules}
+                    formats={QuillFormats}
                     onChange={(value) => {
                         setDescription(value)
                     }}

@@ -43,6 +43,45 @@ const commonPostAPICall = async (params: object, url: string, showError = false)
 
     return returnValue
 }
+
+const commonPostAPICallWithFile = async (params: object, url: string, showError = false) => {
+    let returnValue = { ...returnRecords, total: 0 }
+
+    if (getAuthToken() && getAuthToken() !== null && getAuthToken() !== "") {
+        await axios.post(`${BaseUrl}/v1/${url}`, params, {
+            headers: {
+                Authorization: `Bearer ${getAuthToken()}`,
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+            .then((response: AxiosResponse) => {
+                if (response) {
+                    if (response?.status == 200 && response?.data?.success == false) {
+                        ErrorToast(response?.data?.message)
+                    }
+
+                    if (response?.status === 200 && response?.data?.success == true) {
+                        returnValue.success = true
+                        returnValue.data = response?.data?.data
+                        if (response?.data?.total) {
+                            returnValue.total = response?.data?.total
+                        }
+                    }
+
+                    if (showError == true && response?.data?.success == true) {
+                        SuccessToast(response?.data?.message)
+                    }
+                } else {
+                    throw new Error("Something went wrong")
+                }
+            }).catch((e: AxiosError) => {
+                ErrorToast(e?.message)
+                // console.log(e.message);
+            })
+    }
+
+    return returnValue
+}
 const commonPostPublicAPICall = async (params: object, url: string, showError = false) => {
     let returnValue = { ...returnRecords, total: 0 }
 
@@ -129,5 +168,6 @@ export {
     commonPostAPICall,
     commonGetAPICalls,
     commonPublicGetApiCalls,
-    commonPostPublicAPICall
+    commonPostPublicAPICall,
+    commonPostAPICallWithFile
 }
