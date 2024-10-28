@@ -94,13 +94,16 @@ const data = {
         },
       ],
     },
-
     {
       title: "Services",
       url: "#",
       icon: FileText,
       isActive: true,
       items: [
+        {
+          title: "Information pages",
+          url: "/services_info",
+        },
         {
           title: "Content Writing",
           url: "/content_writing",
@@ -218,6 +221,7 @@ const AdminDashboard = () => {
                                 <span>{subItem.title}</span>
                               </a> */}
                                   <Link
+                                    className={`${window.location.pathname == subItem.url && 'bg-gray-200'}`}
                                     to={subItem.url}
                                   >
                                     <span>{subItem.title}</span>

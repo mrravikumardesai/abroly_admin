@@ -90,8 +90,8 @@ const ContentWritingList = () => {
                 <TableBody items={contentWritingData} emptyContent={"No rows to display."}>
                     {(item: any) => (
                         <TableRow key={item?.key} onClick={(e) => {
-                            e.stopPropagation()
-                            navigate(`/content_writing/page/${getKeyValue(item, "uuid")}`)
+                            // e.stopPropagation()
+                            // navigate(`/content_writing/page/${getKeyValue(item, "uuid")}`)
                         }}
                             className='cursor-pointer'
                         >

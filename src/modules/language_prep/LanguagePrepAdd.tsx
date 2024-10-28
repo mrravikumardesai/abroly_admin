@@ -9,7 +9,6 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import LanguagePrepCommon from './LanguagePrepCommon';
-import 'react-quill/dist/quill.snow.css';
 
 const LanguagePrepAdd = () => {
   const [title, setTitle] = useState("")

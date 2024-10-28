@@ -1,3 +1,4 @@
+import { QuillFormats, QuillModules } from '@/components/ReactQuillNavOptions';
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
 import { Button, Input, Textarea } from '@nextui-org/react'
 import React, { useState } from 'react'
@@ -20,7 +21,7 @@ const StaticContentAdd = () => {
       title,
       description,
       url
-    },"/static/create")
+    }, "/static/create")
     if (success && success == true) {
       navigate(-1)
     }
@@ -48,17 +49,21 @@ const StaticContentAdd = () => {
             setUrl(e.target.value)
           }}
         />
-        <ReactQuill theme="snow" value={description}
+        <ReactQuill
+          theme="snow"
+          value={description}
+          modules={QuillModules}
+          formats={QuillFormats}
           onChange={(value) => {
             setDescription(value)
           }}
-        />  
+        />
 
-        <Button 
-          variant='shadow' 
+        <Button
+          variant='shadow'
           color='primary'
           onPress={addStaticContentApiCall}
-          >Add Page</Button>
+        >Add Page</Button>
 
       </section>
 

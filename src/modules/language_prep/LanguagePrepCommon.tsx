@@ -1,3 +1,4 @@
+import { QuillFormats, QuillModules } from '@/components/ReactQuillNavOptions'
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
 import { getAuthToken } from '@/utils/localstorage'
 import { ErrorToast, SuccessToast } from '@/utils/Toaster'
@@ -58,7 +59,7 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
     const updateLanguage = async () => {
 
         const formData = new FormData()
-        if(files){
+        if (files) {
             formData.append("file", files)
         }
         formData.append("title", title)
@@ -93,7 +94,7 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
 
             <section className='flex flex-row gap-2 flex-wrap'>
                 {
-                     files &&
+                    files &&
                     <section className='relative'>
                         <img className='w-[33vw]' src={URL.createObjectURL(files)} />
                     </section>
@@ -120,7 +121,10 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
                         setTitle(e.target.value)
                     }}
                 />
-                <ReactQuill theme="snow" value={description}
+                <ReactQuill
+                    modules={QuillModules}
+                    formats={QuillFormats}
+                    theme="snow" value={description}
                     onChange={(value) => {
                         setDescription(value)
                     }}

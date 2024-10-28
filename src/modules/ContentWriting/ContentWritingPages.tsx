@@ -1,3 +1,4 @@
+import { QuillFormats, QuillModules } from '@/components/ReactQuillNavOptions'
 import { commonGetAPICalls, commonPostAPICall } from '@/utils/ApiCallUtils'
 import { Button, Input } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
@@ -33,7 +34,7 @@ const ContentWritingPages = () => {
     const navigate = useNavigate()
 
     const updateApiCall = async () => {
-        const { data, success } = await commonPostAPICall({ content_writing_uuid: id, points: description }, "/content_writing/add_points",true)
+        const { data, success } = await commonPostAPICall({ content_writing_uuid: id, points: description }, "/content_writing/add_points", true)
         if (success && success == true) {
             initDetailsApiCall()
         }
@@ -58,7 +59,10 @@ const ContentWritingPages = () => {
                                             setDescription(old)
                                         }}
                                     />
-                                    <ReactQuill theme="snow" value={item.description}
+                                    <ReactQuill
+                                        modules={QuillModules}
+                                        formats={QuillFormats}
+                                        theme="snow" value={item.description}
                                         onChange={(value) => {
                                             const old = [...description]
                                             old[index].description = value
