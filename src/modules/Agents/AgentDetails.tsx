@@ -26,7 +26,7 @@ const AgentDetails = () => {
   let tabs = [
     {
       id: "profile",
-      label: "Profile",
+      label: "Basic Profile",
       content: <AgentProfile agentUuid={id}/>
     },
     {
