@@ -62,7 +62,7 @@ const AgentProfile = ({ agentUuid }) => {
                                     <p className="text-gray-600">{profile?.basic_profile?.aboutUs}</p>
                                 </div>
 
-                                {/* Detailed Description */}
+                                {/* Detailed Description */ }
                                 <div className="col-span-full">
                                     <h4 className="text-lg font-medium text-gray-700 mb-2 flex items-center">
                                         <Info className="h-5 w-5 mr-2 text-blue-600" />
