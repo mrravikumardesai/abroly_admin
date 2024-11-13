@@ -1,7 +1,7 @@
 
 
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
-import { Button, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
+import { Button, getKeyValue, Switch, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -17,9 +17,15 @@ const LanguagePrep = () => {
   }, [])
 
   const initDetailsApiCall = async () => {
-    const { data, success } = await commonPostAPICall({uuid:""}, "/language_prep/list")
+    const { data, success } = await commonPostAPICall({ uuid: "" }, "/language_prep/list")
     if (success && success == true) {
       setData(data)
+    }
+  }
+  const toggleVisiblilityApiCall = async (uuid,status) => {
+    const {  success } = await commonPostAPICall({ uuid,status }, "/language_prep/toggle")
+    if (success && success == true) {
+      initDetailsApiCall()
     }
   }
 
@@ -82,6 +88,15 @@ const LanguagePrep = () => {
                       >
                         Chapters
                       </Button>
+
+
+                      <Switch isSelected={getKeyValue(item, "is_public") == 1} onValueChange={(e) => {
+                        // console.log(e);
+                        toggleVisiblilityApiCall(getKeyValue(item, "uuid"),e == true ? "active" : "inactive")
+
+                      }}>
+                        {getKeyValue(item, "is_public") == 1 ? "Public" : "Private"}
+                      </Switch>
 
                     </div>
                   </TableCell>
