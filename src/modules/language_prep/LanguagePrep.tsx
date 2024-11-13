@@ -1,7 +1,8 @@
 
 
+import CommonConfirmation from '@/components/CommonConfirmation'
 import { commonPostAPICall } from '@/utils/ApiCallUtils'
-import { Button, getKeyValue, Switch, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
+import { Button, getKeyValue, Spinner, Switch, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@nextui-org/react'
 import React, { useEffect, useState } from 'react'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -16,16 +17,33 @@ const LanguagePrep = () => {
     initDetailsApiCall()
   }, [])
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const initDetailsApiCall = async () => {
+    setIsLoading(true)
     const { data, success } = await commonPostAPICall({ uuid: "" }, "/language_prep/list")
     if (success && success == true) {
       setData(data)
     }
+    setIsLoading(false)
   }
-  const toggleVisiblilityApiCall = async (uuid,status) => {
-    const {  success } = await commonPostAPICall({ uuid,status }, "/language_prep/toggle")
+  const toggleVisiblilityApiCall = async (uuid, status) => {
+    const { success } = await commonPostAPICall({ uuid, status }, "/language_prep/toggle")
     if (success && success == true) {
       initDetailsApiCall()
+    }
+  }
+
+  // delete
+  const { isOpen: isDeleteCnfOpen, onOpenChange: onDeleteCnfOpenChange } = useDisclosure();
+
+  const [deleteUUID, setDeleteUUID] = useState("")
+  const deleteLanguageApiCall = async () => {
+    const { success } = await commonPostAPICall({ uuid: deleteUUID }, "health_in/delete", true)
+    if (success && success == true) {
+      initDetailsApiCall()
+      onDeleteCnfOpenChange()
+      setDeleteUUID("")
     }
   }
 
@@ -51,7 +69,11 @@ const LanguagePrep = () => {
           <TableColumn key="createdAt">Create At</TableColumn>
           <TableColumn key="action">Action</TableColumn>
         </TableHeader>
-        <TableBody items={data} emptyContent={"No rows to display."}>
+        <TableBody
+          emptyContent={"No rows to display."}
+          loadingContent={<Spinner />}
+          isLoading={isLoading}
+          items={data} >
           {(item: any) => (
             <TableRow key={item?.uuid} onClick={(e) => {
               e.stopPropagation()
@@ -71,9 +93,8 @@ const LanguagePrep = () => {
                         color='danger'
                         size='sm'
                         onPress={() => {
-                          // navigate(`/services_details/${getKeyValue(item, "service_key")}`)
-                          // setDeleteUUID(getKeyValue(item, "uuid"))
-                          // onDeleteCnfOpenChange()
+                          setDeleteUUID(getKeyValue(item, "uuid"))
+                          onDeleteCnfOpenChange()
                         }}
                       >
                         <MdDelete className='w-4 h-4' />
@@ -92,7 +113,7 @@ const LanguagePrep = () => {
 
                       <Switch isSelected={getKeyValue(item, "is_public") == 1} onValueChange={(e) => {
                         // console.log(e);
-                        toggleVisiblilityApiCall(getKeyValue(item, "uuid"),e == true ? "active" : "inactive")
+                        toggleVisiblilityApiCall(getKeyValue(item, "uuid"), e == true ? "active" : "inactive")
 
                       }}>
                         {getKeyValue(item, "is_public") == 1 ? "Public" : "Private"}
@@ -111,6 +132,17 @@ const LanguagePrep = () => {
           )}
         </TableBody>
       </Table>
+
+      <CommonConfirmation
+        isOpen={isDeleteCnfOpen}
+        onOpenChange={onDeleteCnfOpenChange}
+        title={"Are you sure want to delete ?"}
+        handleSubmit={() => {
+          deleteLanguageApiCall()
+        }}
+        nagativeTitle={"No"}
+        positiveTitle={"Yes"}
+      />
     </div>
 
   )

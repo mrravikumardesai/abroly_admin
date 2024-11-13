@@ -14,10 +14,11 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
     const [description, setDescription] = useState("")
     const [files, setFiles] = useState()
     const [existFile, setExistFile] = useState()
+    const [level1_price, setLevel1Price] = useState(0)
+    const [level2_price, setLevel2Price] = useState(0)
+    const [level3_price, setLevel3Price] = useState(0)
 
     const navigate = useNavigate()
-
-    const [details, setDetails] = useState([])
 
     useEffect(() => {
         if (isNew == false) {
@@ -32,6 +33,9 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
             setTitle(data?.title)
             setDescription(data?.description)
             setExistFile(data?.access_banner)
+            setLevel1Price(data?.level1_price)
+            setLevel2Price(data?.level2_price)
+            setLevel3Price(data?.level3_price)
         }
     }
 
@@ -43,6 +47,9 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
         formData.append("file", files)
         formData.append("title", title)
         formData.append("description", description)
+        formData.append("level1_price", level1_price + "")
+        formData.append("level2_price", level2_price + "")
+        formData.append("level3_price", level3_price + "")
 
         await axios.post(`${BaseUrl}/v1/language_prep/add`, formData, {
             headers: {
@@ -65,6 +72,10 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
         formData.append("title", title)
         formData.append("uuid", uuid)
         formData.append("description", description)
+        formData.append("level1_price", level1_price + "")
+        formData.append("level2_price", level2_price + "")
+        formData.append("level3_price", level3_price + "")
+
 
         await axios.post(`${BaseUrl}/v1/language_prep/edit`, formData, {
             headers: {
@@ -131,6 +142,42 @@ const LanguagePrepCommon = ({ isNew, uuid = "" }) => {
                     className=' w-full'
 
                 />
+
+
+            </section>
+
+            <section>
+                <p className='text-md font-bold'>Price Section</p>
+
+                <section className='flex flex-col md:flex-row gap-2'>
+                    <Input
+                        type='number'
+                        label="Level 1 Price"
+                        value={level1_price + ""}
+                        variant='bordered'
+                        onChange={(e) => {
+                            setLevel1Price(Number(e.target.value))
+                        }}
+                    />
+                    <Input
+                        type='number'
+                        label="Level 2 Price"
+                        value={level2_price + ""}
+                        variant='bordered'
+                        onChange={(e) => {
+                            setLevel2Price(Number(e.target.value))
+                        }}
+                    />
+                    <Input
+                        type='number'
+                        label="Level 3 Price"
+                        value={level3_price + ""}
+                        variant='bordered'
+                        onChange={(e) => {
+                            setLevel3Price(Number(e.target.value))
+                        }}
+                    />
+                </section>
 
 
             </section>
