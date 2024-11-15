@@ -8,7 +8,7 @@ import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import AddOnSubscription from './AddOnSubscription';
 import { useParams } from 'react-router-dom';
 
-const ActiveSubscription = ({ agentUuid }) => {
+const ActiveSubscription = ({ agentUuid, refreshEvent }) => {
 
 
     const [subscription, setSubscription] = useState(null);
@@ -104,7 +104,10 @@ const ActiveSubscription = ({ agentUuid }) => {
                     ) : (
                         <section className='flex flex-col items-center'>
                             <p className='text-center text-gray-500'>No active subscription found.</p>
-                            <AssignSubscription agentUuid={agentUuid} refreshEvent={fetchSubscription} />
+                            <AssignSubscription agentUuid={agentUuid} refreshEvent={() => {
+                                fetchSubscription()
+                                refreshEvent()
+                            }} />
                         </section>
                     )}
                 </CardBody>

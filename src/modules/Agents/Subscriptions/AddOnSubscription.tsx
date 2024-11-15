@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react'
 
 const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
 
+    console.log(subscriptionUUID);
+    
+
     const [addOnListing, setAddOnListing] = useState([])
 
     const [total, setTotal] = useState(0)

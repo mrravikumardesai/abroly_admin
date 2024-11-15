@@ -17,11 +17,11 @@ const commonPostAPICall = async (params: object, url: string, showError = false)
         })
             .then((response: AxiosResponse) => {
                 if (response) {
-                    if (response?.status == 200 && response?.data?.success == false) {
+                    if (response?.status && response?.status == 200 && response?.data?.success == false) {
                         ErrorToast(response?.data?.message)
                     }
 
-                    if (response?.status === 200 && response?.data?.success == true) {
+                    if (response?.status && response?.status === 200 && response?.data?.success == true) {
                         returnValue.success = true
                         returnValue.data = response?.data?.data
                         if (response?.data?.total) {
@@ -36,8 +36,8 @@ const commonPostAPICall = async (params: object, url: string, showError = false)
                     throw new Error("Something went wrong")
                 }
             }).catch((e: AxiosError) => {
-                ErrorToast(e?.message)
-                // console.log(e.message);
+                ErrorToast("Server Issue")
+                console.log(e);
             })
     }
 
