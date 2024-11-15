@@ -189,7 +189,7 @@ const AddUpdateServiceInfo = () => {
 
             <Drawer open={addUpdateOpen} onOpenChange={setAddUpdateOpen}>
                 <DrawerContent>
-                    <div className=" space-y-3 py-2 px-6 rounded-lg shadow-md h-[80vh] overflow-y-scroll">
+                    <div className="space-y-1 py-2 px-6 rounded-lg shadow-md h-[80vh] overflow-y-scroll">
                         <h2 className="text-xl font-bold">Add / Update Block</h2>
                         <RadioGroup
                             label="Select Block Type"
@@ -206,9 +206,10 @@ const AddUpdateServiceInfo = () => {
 
                         {formData?.section_type === 'image' ? (
                             <Input
-                                label="Image File"
+                                // label="Image File"
                                 name="file"
                                 type="file"
+                                className='my-5'
                                 accept="image/png, image/gif, image/jpeg"
                                 onChange={(e) => setFormData((prev) => ({ ...prev, file: e.target.files[0] }))}
                             />

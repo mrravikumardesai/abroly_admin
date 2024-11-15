@@ -39,7 +39,7 @@ const LanguagePrep = () => {
 
   const [deleteUUID, setDeleteUUID] = useState("")
   const deleteLanguageApiCall = async () => {
-    const { success } = await commonPostAPICall({ uuid: deleteUUID }, "health_in/delete", true)
+    const { success } = await commonPostAPICall({ uuid: deleteUUID }, "/language_prep/delete", true)
     if (success && success == true) {
       initDetailsApiCall()
       onDeleteCnfOpenChange()

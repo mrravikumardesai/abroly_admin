@@ -32,12 +32,12 @@ const AgentDetails = () => {
     {
       id: "subscription",
       label: "Subscription",
-      content: <ActiveSubscription agentUuid={id} />
+      content: <ActiveSubscription agentUuid={id} refreshEvent={() => {fetchSubscription() }} />
     },
     {
       id: "addon",
       label: "Add On",
-      content: <AddOnSubscription agentUuid={id} refreshEvent={() => { }} subscriptionUUID={subscription?.uuid} />
+      content: <AddOnSubscription agentUuid={id} refreshEvent={() => {fetchSubscription() }} subscriptionUUID={subscription?.uuid} />
     },
   ];
 

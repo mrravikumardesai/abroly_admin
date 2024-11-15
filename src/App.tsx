@@ -13,17 +13,23 @@ const App = () => {
       return response;
     },
     (error) => {
-      if (error.response.status === 402) {
+      console.log(error,"ERROR");
+      
+      if (error?.response?.status === 402) {
         ErrorToast("Please Purchase Subscription!");
         setTimeout(() => {
           window.location.reload()
         }, 1000);
       }
-      if (error.response.status === 401) {
+      if (error?.response?.status === 401) {
         ErrorToast("Auth Failed!");
         setTimeout(() => {
           window.location.reload()
         }, 1000);
+      }
+
+      if(error?.message == "Network Error"){
+        ErrorToast("Network Error")
       }
 
       return error;
