@@ -31,6 +31,7 @@ import PackageList from "@/modules/Package/PackageList"
 import ActiveSubscription from "@/modules/Agents/Subscriptions/ActiveSubscription"
 import ServiceInfo from "@/modules/ServiceInfo/ServiceInfo"
 import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
+import EnrolledStudents from "@/modules/language_prep/enrolled_students/EnrolledStudents"
 
 export const PublicRoutes = [
     {
@@ -99,6 +100,10 @@ export const AdminRoutes = [
     {
         path: "/lang_prep",
         element: LanguagePrep
+    },
+    {
+        path: "/lang_prep/enrolled_students/:id",
+        element: EnrolledStudents
     },
     {
         path: "/lang_prep/add",
