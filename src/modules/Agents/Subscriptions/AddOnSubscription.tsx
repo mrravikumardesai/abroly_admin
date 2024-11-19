@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
 
     console.log(subscriptionUUID);
-    
+
 
     const [addOnListing, setAddOnListing] = useState([])
 
@@ -43,6 +43,7 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
     const [jobPostLimit, setJobPostLimit] = useState("")
     const [job_post_days, setJobPostDays] = useState("")
     const [addOneLoading, setAddOnLoading] = useState(false)
+    const [achievement_banner, setAchievementBanner] = useState("")
 
     const onSuccess = async () => {
         setAddOnLoading(true)
@@ -52,7 +53,8 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
             jobPostLimit,
             job_post_days,
             agent_uuid: agentUuid,
-            subscription_uuid: subscriptionUUID
+            subscription_uuid: subscriptionUUID,
+            achievement_banner
         };
 
         const { success } = await commonPostAPICall(packageData, "/subscription/custom_add_on", true);
@@ -65,6 +67,7 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
             setJobPostDays("")
             refreshEvent()
             setIsCutomeOpen(false)
+            setAchievementBanner("")
         }
         setAddOnLoading(false)
     };
@@ -106,6 +109,7 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
                     <TableColumn key="leads_remaining">Extend Leads </TableColumn>
                     <TableColumn key="job_post_limit">Extend Limit  (Job Post)</TableColumn>
                     <TableColumn key="job_post_extend_days">Extended Days (Job Post)</TableColumn>
+                    <TableColumn key="achievement_banner">Extended Achievement Banners (Job Post)</TableColumn>
                     <TableColumn key="createdAt">Add On Date</TableColumn>
                 </TableHeader>
                 <TableBody
@@ -142,8 +146,8 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
                         <section className='grid grid-cols-2 gap-2'>
 
                             <Input
-                                placeholder="Lead Limit"
-                                label="Lead Limit"
+                                placeholder="Extend Lead Limit"
+                                label="Extend Lead Limit"
                                 type="number"
                                 value={leadLimit}
                                 onChange={(e) => setLeadLimit(e.target.value)}
@@ -151,8 +155,8 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
                             />
 
                             <Input
-                                placeholder="Team Limit"
-                                label="Team Limit"
+                                placeholder="Extend Team Limit"
+                                label="Extend Team Limit"
                                 type="number"
                                 value={teamLimit}
                                 onChange={(e) => setTeamLimit(e.target.value)}
@@ -160,8 +164,8 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
                             />
 
                             <Input
-                                placeholder="Job Post Limit"
-                                label="Job Post Limit"
+                                placeholder="Extend Job Post Limit"
+                                label="Extend Job Post Limit"
                                 type="number"
                                 value={jobPostLimit}
                                 onChange={(e) => setJobPostLimit(e.target.value)}
@@ -169,11 +173,20 @@ const AddOnSubscription = ({ agentUuid, refreshEvent, subscriptionUUID }) => {
                             />
 
                             <Input
-                                placeholder="Job Post Days"
-                                label="Job Post Days"
+                                placeholder="Extend Job Post Days"
+                                label="Extend Job Post Days"
                                 type="number"
                                 value={job_post_days}
                                 onChange={(e) => setJobPostDays(e.target.value)}
+                                className="mb-4"
+                            />
+
+                            <Input
+                                placeholder="Extend Number of Achievements for month"
+                                label="Extend Achievement"
+                                type="number"
+                                value={achievement_banner}
+                                onChange={(e) => setAchievementBanner(e.target.value)}
                                 className="mb-4"
                             />
 

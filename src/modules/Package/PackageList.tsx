@@ -80,6 +80,7 @@ const PackageList = () => {
                     <TableColumn key="teamLimit">Team Lead</TableColumn>
                     <TableColumn key="jobPostLimit">Job Post Limit</TableColumn>
                     <TableColumn key="job_post_days">Job Post Days</TableColumn>
+                    <TableColumn key="achievement_banner">Achievement Banners</TableColumn>
                     <TableColumn key="action">Action</TableColumn>
                 </TableHeader>
                 <TableBody items={packages} emptyContent={"No rows to display."}>

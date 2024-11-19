@@ -13,6 +13,7 @@ const PackageAddUpdate = ({ packageUuid, onFormSubmit }) => {
   const [teamLimit, setTeamLimit] = useState("")
   const [jobPostLimit, setJobPostLimit] = useState("")
   const [job_post_days, setJobPostDays] = useState("")
+  const [achievement_banner, setAchievementBanner] = useState("")
 
   const onSuccess = async () => {
     const packageData = {
@@ -24,6 +25,7 @@ const PackageAddUpdate = ({ packageUuid, onFormSubmit }) => {
       teamLimit,
       jobPostLimit,
       job_post_days,
+      achievement_banner
     };
 
     const { success } = await commonPostAPICall(packageData, isUpdating ? `packages/update` : `packages/add`, true);
@@ -117,6 +119,15 @@ const PackageAddUpdate = ({ packageUuid, onFormSubmit }) => {
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          className="mb-4"
+        />
+
+        <Input
+          placeholder="Number of Achievements for month"
+          label="Achievement"
+          type="number"
+          value={achievement_banner}
+          onChange={(e) => setAchievementBanner(e.target.value)}
           className="mb-4"
         />
 
