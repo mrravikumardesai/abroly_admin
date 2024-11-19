@@ -7,6 +7,7 @@ import { Briefcase, Calendar, FileText, TrendingUp, Users } from 'lucide-react';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import AddOnSubscription from './AddOnSubscription';
 import { useParams } from 'react-router-dom';
+import { RiAdvertisementFill } from 'react-icons/ri';
 
 const ActiveSubscription = ({ agentUuid, refreshEvent }) => {
 
@@ -97,6 +98,17 @@ const ActiveSubscription = ({ agentUuid, refreshEvent }) => {
                                 </p>
                                 <Tooltip content="Maximum number of team members allowed in this subscription" placement="top">
                                     <Users className="text-gray-500 w-5 h-5 cursor-pointer" />
+                                </Tooltip>
+                            </div>
+
+                            {/* Team Member Limit */}
+                            <div className="flex items-center space-x-4">
+                                <RiAdvertisementFill className="text-blue-500 w-6 h-6" />
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Achievement Highlight:</span> {subscription?.achievement_banner}
+                                </p>
+                                <Tooltip content="Remaining Achievement Highlight" placement="top">
+                                    <RiAdvertisementFill className="text-gray-500 w-5 h-5 cursor-pointer" />
                                 </Tooltip>
                             </div>
                         </div>
