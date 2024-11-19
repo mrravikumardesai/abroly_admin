@@ -109,6 +109,16 @@ const LanguagePrep = () => {
                       >
                         Chapters
                       </Button>
+                      <Button
+                        variant='flat'
+                        color='primary'
+                        size='sm'
+                        onPress={() => {
+                          navigate(`/lang_prep/enrolled_students/${getKeyValue(item, "uuid")}`)
+                        }}
+                      >
+                        Students
+                      </Button>
 
 
                       <Switch isSelected={getKeyValue(item, "is_public") == 1} onValueChange={(e) => {
