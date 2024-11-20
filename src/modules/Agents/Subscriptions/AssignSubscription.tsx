@@ -41,6 +41,7 @@ const AssignSubscription = ({ agentUuid, refreshEvent }) => {
     const [teamLimit, setTeamLimit] = useState("")
     const [jobPostLimit, setJobPostLimit] = useState("")
     const [job_post_days, setJobPostDays] = useState("")
+    const [achievement_banner, setAchievementBanner] = useState("")
 
     const onSuccess = async () => {
         const packageData = {
@@ -48,7 +49,8 @@ const AssignSubscription = ({ agentUuid, refreshEvent }) => {
             teamLimit,
             jobPostLimit,
             job_post_days,
-            agent_uuid: agentUuid
+            agent_uuid: agentUuid,
+            achievement_banner
         };
 
         const { success } = await commonPostAPICall(packageData, "/subscription/custom_assign", true);
@@ -150,6 +152,14 @@ const AssignSubscription = ({ agentUuid, refreshEvent }) => {
                                 type="number"
                                 value={job_post_days}
                                 onChange={(e) => setJobPostDays(e.target.value)}
+                                className="mb-4"
+                            />
+                            <Input
+                                placeholder="Number of Achievements for month"
+                                label="Achievement"
+                                type="number"
+                                value={achievement_banner}
+                                onChange={(e) => setAchievementBanner(e.target.value)}
                                 className="mb-4"
                             />
 
