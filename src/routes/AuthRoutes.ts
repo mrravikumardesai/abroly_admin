@@ -32,6 +32,7 @@ import ActiveSubscription from "@/modules/Agents/Subscriptions/ActiveSubscriptio
 import ServiceInfo from "@/modules/ServiceInfo/ServiceInfo"
 import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
 import EnrolledStudents from "@/modules/language_prep/enrolled_students/EnrolledStudents"
+import SideBannerAchievements from "@/modules/SideBannerAchievements/SideBannerAchievements"
 
 export const PublicRoutes = [
     {
@@ -138,6 +139,12 @@ export const AdminRoutes = [
     {
         path: "/lang_prep/edit_sub_chapters/:id",
         element: UpdateSubChapter
+    },
+
+    // side banner achievements 
+    {
+        path:"/side_banner_achievements/:status",
+        element:SideBannerAchievements
     },
 
     // quiz

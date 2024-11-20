@@ -20,7 +20,7 @@
 // import { BsQuestion } from 'react-icons/bs';
 // import { PiNewspaper } from 'react-icons/pi';
 
-import { Home, User, FileText, ShieldQuestion, Newspaper, Star, ChevronRight, MoreHorizontal, ChevronsUpDown, BadgeCheck, Bell, LogOut, SubscriptIcon, MemoryStick } from "lucide-react";
+import { Home, User, FileText, ShieldQuestion, Newspaper, Star, ChevronRight, MoreHorizontal, ChevronsUpDown, BadgeCheck, Bell, LogOut, SubscriptIcon, MemoryStick, Award } from "lucide-react";
 
 import {
   Collapsible,
@@ -63,6 +63,7 @@ import CommonConfirmation from "@/components/CommonConfirmation"
 import { handleLogout } from "@/utils/LogoutUtils"
 import { useSelector } from "react-redux"
 import { AdminRoutes } from "@/routes/AuthRoutes"
+import { RiAdvertisementLine } from "react-icons/ri";
 
 const data = {
   navMain: [
@@ -91,6 +92,22 @@ const data = {
         {
           title: "Students",
           url: "/student",
+        },
+      ],
+    },
+    {
+      title: "Achivements",
+      url: "#",
+      icon: Award,
+      isActive: true,
+      items: [
+        {
+          title: "Requests",
+          url: "/side_banner_achievements/pending",
+        },
+        {
+          title: "History",
+          url: "/side_banner_achievements/history",
         },
       ],
     },
