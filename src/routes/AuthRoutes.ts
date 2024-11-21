@@ -33,6 +33,7 @@ import ServiceInfo from "@/modules/ServiceInfo/ServiceInfo"
 import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
 import EnrolledStudents from "@/modules/language_prep/enrolled_students/EnrolledStudents"
 import SideBannerAchievements from "@/modules/SideBannerAchievements/SideBannerAchievements"
+import SideBannerResponses from "@/modules/SideBannerAchievements/SideBannerResponses"
 
 export const PublicRoutes = [
     {
@@ -145,6 +146,10 @@ export const AdminRoutes = [
     {
         path:"/side_banner_achievements/:status",
         element:SideBannerAchievements
+    },
+    {
+        path: "/side_banner_responses/:uuid",
+        element: SideBannerResponses
     },
 
     // quiz

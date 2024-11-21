@@ -119,6 +119,11 @@ const SideBannerAchievements = () => {
 
                                 {/* Actions */}
                                 <div className="pb-4 pr-4 flex justify-end items-center gap-2 h-fit">
+                                    <Button
+                                    onClick={()=>{
+                                        navigate(`/side_banner_responses/${record.uuid}`)
+                                    }}
+                                    >View Responses</Button>
                                     {record?.status !== "reject" && <Button variant='flat' color='danger' onClick={() => {
                                         actionApiCall(record?.uuid, "reject")
                                     }}>Reject</Button>
