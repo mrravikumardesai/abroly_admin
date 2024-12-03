@@ -59,7 +59,7 @@ const PublicDashboard = () => {
                 </NavbarContent>
                 <NavbarContent justify="end">
                     <NavbarItem className='flex flex-row gap-2 items-center justify-center'>
-                        <ThemeToggle />
+                        {/* <ThemeToggle /> */}
                         <Button onPress={() => {
                             navigate("/login")
                         }}
