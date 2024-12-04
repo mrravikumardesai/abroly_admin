@@ -152,6 +152,19 @@ const data = {
         },
       ],
     },
+    {
+      title: "Event Banners",
+      url: "#",
+      icon: RiAdvertisementLine,
+      isActive: true,
+      items: [
+        // 'consultant', 'tours_travels', "job_post"
+        {
+          title: "Public Event Banners",
+          url: "/public_event_banners",
+        },
+      ],
+    },
   ],
   navSecondary: [
     {
