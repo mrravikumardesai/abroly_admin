@@ -34,6 +34,8 @@ import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
 import EnrolledStudents from "@/modules/language_prep/enrolled_students/EnrolledStudents"
 import SideBannerAchievements from "@/modules/SideBannerAchievements/SideBannerAchievements"
 import SideBannerResponses from "@/modules/SideBannerAchievements/SideBannerResponses"
+import PublicEventBanners from "@/modules/EventBanners/PublicEventBanners"
+import PublicEventBannerCreate from "@/modules/EventBanners/PublicEventBannerCreate"
 
 export const PublicRoutes = [
     {
@@ -144,8 +146,8 @@ export const AdminRoutes = [
 
     // side banner achievements 
     {
-        path:"/side_banner_achievements/:status",
-        element:SideBannerAchievements
+        path: "/side_banner_achievements/:status",
+        element: SideBannerAchievements
     },
     {
         path: "/side_banner_responses/:uuid",
@@ -190,13 +192,24 @@ export const AdminRoutes = [
 
     // service information
     {
-        path:"/services_info",
-        element:ServiceInfo
+        path: "/services_info",
+        element: ServiceInfo
     },
     {
-        path:"/services_info/:service",
-        element:AddUpdateServiceInfo
+        path: "/services_info/:service",
+        element: AddUpdateServiceInfo
     },
+
+    // event banners
+    {
+        path: "/public_event_banners",
+        element: PublicEventBanners
+    },
+    {
+        path: "/public_event_banner_create",
+        element: PublicEventBannerCreate
+    },
+
 
     // 404
     {
