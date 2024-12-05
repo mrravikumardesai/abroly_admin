@@ -36,6 +36,7 @@ import SideBannerAchievements from "@/modules/SideBannerAchievements/SideBannerA
 import SideBannerResponses from "@/modules/SideBannerAchievements/SideBannerResponses"
 import PublicEventBanners from "@/modules/EventBanners/PublicEventBanners"
 import PublicEventBannerCreate from "@/modules/EventBanners/PublicEventBannerCreate"
+import PublicEventBannerEdit from "@/modules/EventBanners/PublicEventBannerEdit"
 
 export const PublicRoutes = [
     {
@@ -208,6 +209,10 @@ export const AdminRoutes = [
     {
         path: "/public_event_banner_create",
         element: PublicEventBannerCreate
+    },
+    {
+        path: "/public_event_banner_create/:id",
+        element: PublicEventBannerEdit
     },
 
 

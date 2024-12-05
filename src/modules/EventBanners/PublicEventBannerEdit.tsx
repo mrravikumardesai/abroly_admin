@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'rsuite';
 import { Button, Input } from '@nextui-org/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { getAuthToken } from '@/utils/localstorage';
 import { Trash } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { commonGetAPICalls } from '@/utils/ApiCallUtils';
 
-const PublicEventBannerCreate = () => {
+const PublicEventBannerEdit = () => {
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        getApiCall();
+    }, [id]);
+
     const [formData, setFormData] = useState({
         start_date: '',
         end_date: '',
@@ -16,6 +24,21 @@ const PublicEventBannerCreate = () => {
         descriptive_text: '',
         images: []
     });
+
+    const getApiCall = async () => {
+        const { success, data } = await commonGetAPICalls("/event-banners/public-get/" + id);
+        if (success && success == true) {
+            setFormData({
+                start_date: data?.start_date,
+                end_date: data?.end_date,
+                heading: data?.heading,
+                descriptive_text: data?.descriptive_text,
+                images: data?.images
+            });
+        }
+    }
+
+
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -72,19 +95,19 @@ const PublicEventBannerCreate = () => {
             <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
                 <div>
                     <label>Start Date</label>
-                    <Input type="date" name="start_date" onChange={handleChange} />
+                    <Input type="date" name="start_date" value={new Date(formData?.start_date).toISOString().split('T')[0]} onChange={handleChange} />
                 </div>
                 <div>
                     <label>End Date</label>
-                    <Input type="date" name="end_date" onChange={handleChange} />
+                    <Input type="date" name="end_date" value={new Date(formData?.end_date).toISOString().split('T')[0]} onChange={handleChange} />
                 </div>
                 <div>
                     <label>Heading</label>
-                    <Input name="heading" onChange={handleChange} />
+                    <Input name="heading" value={formData?.heading} onChange={handleChange} />
                 </div>
                 <div>
                     <label>Descriptive Text</label>
-                    <ReactQuill onChange={(value) => handleChange({ target: { name: 'descriptive_text', value } })} />
+                    <ReactQuill value={formData?.descriptive_text} onChange={(value) => handleChange({ target: { name: 'descriptive_text', value } })} />
                 </div>
                 <div className='flex flex-row gap-2 items-center justify-start my-2'>
                     <label>Upload Images</label>
@@ -124,4 +147,4 @@ const PublicEventBannerCreate = () => {
     );
 };
 
-export default PublicEventBannerCreate
+export default PublicEventBannerEdit
