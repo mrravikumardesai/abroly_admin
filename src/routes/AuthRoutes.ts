@@ -34,9 +34,10 @@ import AddUpdateServiceInfo from "@/modules/ServiceInfo/AddUpdateServiceInfo"
 import EnrolledStudents from "@/modules/language_prep/enrolled_students/EnrolledStudents"
 import SideBannerAchievements from "@/modules/SideBannerAchievements/SideBannerAchievements"
 import SideBannerResponses from "@/modules/SideBannerAchievements/SideBannerResponses"
-import PublicEventBanners from "@/modules/EventBanners/PublicEventBanners"
-import PublicEventBannerCreate from "@/modules/EventBanners/PublicEventBannerCreate"
-import PublicEventBannerEdit from "@/modules/EventBanners/PublicEventBannerEdit"
+import PublicEventBanners from "@/modules/PublicEventBanners/PublicEventBanners"
+import PublicEventBannerCreate from "@/modules/PublicEventBanners/PublicEventBannerCreate"
+import PublicEventBannerEdit from "@/modules/PublicEventBanners/PublicEventBannerEdit"
+import PublicEventBannerInquiries from "@/modules/PublicEventBanners/PuiblicEventBannerInquiries"
 
 export const PublicRoutes = [
     {
@@ -213,6 +214,10 @@ export const AdminRoutes = [
     {
         path: "/public_event_banner_create/:id",
         element: PublicEventBannerEdit
+    },
+    {
+        path: "/public_event_banner_inquiries/:id",
+        element: PublicEventBannerInquiries
     },
 
 
