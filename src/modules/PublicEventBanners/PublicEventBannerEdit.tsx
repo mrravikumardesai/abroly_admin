@@ -8,6 +8,7 @@ import { Trash } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { commonGetAPICalls, commonPostAPICall } from '@/utils/ApiCallUtils';
+import BackButton from '@/components/BackButton';
 
 const PublicEventBannerEdit = () => {
 
@@ -105,11 +106,13 @@ const PublicEventBannerEdit = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className='flex flex-row sm:flex-col items-start gap-2 justify-between'>
+               
             {isLoading && <div className="flex items-center justify-center h-screen">
                 <Spinner color="primary" />
             </div>}
-            <h1 className="text-xl font-bold">Create Public Event Banner</h1>
+            
+            <h1 className="flex flex-row items-center gap-2"><BackButton /> Edit Public Event Banner</h1>
             {error && <p className="text-red-500">{error}</p>}
             <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
                 <div>

@@ -1,7 +1,8 @@
+import BackButton from '@/components/BackButton'
 import CommonConfirmation from '@/components/CommonConfirmation'
 import { commonGetAPICalls, commonPostAPICall } from '@/utils/ApiCallUtils'
 import { Button, Card, CardBody, CardFooter, getKeyValue, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@nextui-org/react'
-import { Delete, Edit, Trash } from 'lucide-react'
+import { ArrowLeft, Delete, Edit, Trash } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -47,6 +48,7 @@ const PublicEventBanners = () => {
         <div className='container mx-auto'>
 
             <div className='flex flex-col sm:flex-row items-start sm:items-center gap-2 justify-between mb-4'>
+                <BackButton />
                 <h1 className='flex-grow'>Public Event Banners</h1>
                 <select
                     onChange={(e) => {
@@ -72,7 +74,7 @@ const PublicEventBanners = () => {
                     <Spinner className='w-4 h-4 animate-spin' />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="max-w-3xl mx-auto space-y-4">
                     {eventBannerData.length === 0 ? (
                         <p>No records to display.</p>
                     ) : (
@@ -97,20 +99,28 @@ const PublicEventBanners = () => {
                                         <p>End : {new Date(item?.end_date).toDateString()}</p>
                                     </div>
                                     <p className='text-sm'>Created At: {new Date(item?.createdAt).toLocaleString()}</p>
-                                    <div className='flex flex-row gap-2 items-center justify-start mt-2'>
-                                        <Button
-                                            isIconOnly variant='flat'
+                                    <div className='flex flex-row gap-2 items-center justify-between mt-2'>
+                                        <div>
+                                            <Button
+                                            onPress={() => {
+                                                navigate(`/public_event_banner_inquiries/${getKeyValue(item, "uuid")}`)
+                                            }}
+                                            > Inquiries </Button>
+                                        </div>
+                                        <div className='flex flex-row gap-2 items-center justify-start'>
+                                            <Button
+                                            variant='flat'
                                             color='primary'
                                             size='sm'
                                             onPress={() => {
                                                 navigate(`/public_event_banner_create/${getKeyValue(item, "uuid")}`)
                                             }}
+                                            startContent={<Edit className='w-4 h-4' />}
                                         >
-                                            <Edit className='w-4 h-4 text-black dark:text-white' />
+                                            Edit
                                         </Button>
 
                                         <Button
-                                            isIconOnly
                                             variant='flat'
                                             color='danger'
                                             size='sm'
@@ -118,9 +128,11 @@ const PublicEventBanners = () => {
                                                 setDeleteUUID(item?.uuid)
                                                 onDeleteCnfOpenChange()
                                             }}
+                                            startContent={<Trash className='w-4 h-4 text-danger' />}
                                         >
-                                            <Trash className='w-4 h-4' />
-                                        </Button>
+                                            Delete
+                                            </Button>
+                                        </div>
                                     </div>
                                 </CardFooter>
                             </Card>
